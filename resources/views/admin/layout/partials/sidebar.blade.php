@@ -82,23 +82,12 @@
                     <li class="{{ active('admin.car-category.index') }}">
                         <a href="{{ route('admin.car-category.index') }}">Category List</a>
                     </li>
-                    <li class="{{ active('admin.car-size-category.index') }}">
-                        <a href="{{ route('admin.car-size-category.index') }}">Car Size</a>
-                    </li>
-                    <li class="{{ active('admin.car-weight-category.index') }}">
-                        <a href="{{ route('admin.car-weight-category.index') }}">Car Weight</a>
-                    </li>
-                    <li class="{{ active('admin.car-covered-category.index') }}">
-                        <a href="{{ route('admin.car-covered-category.index') }}">Car Covered</a>
-                    </li>
+
                     <li class="{{ active('admin.car-brand-category.index') }}">
                         <a href="{{ route('admin.car-brand-category.index') }}">Car Brand</a>
                     </li>
                     <li class="{{ active('admin.car-model-category.index') }}">
                         <a href="{{ route('admin.car-model-category.index') }}">Car Model</a>
-                    </li>
-                    <li class="{{ active('admin.car-trip-category.index') }}">
-                        <a href="{{ route('admin.car-trip-category.index') }}">Car Trip</a>
                     </li>
                 </ul>
             </li>
@@ -111,19 +100,6 @@
                 <ul class="sub-menu">
                     <li class="{{ active('admin.cars.index') }}">
                         <a href="{{ route('admin.cars.index') }}">Car</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-header">Product Type</li>
-            <li class="has-sub {{ set_active('admin/product-*') }}">
-                <a href="javascript:;">
-                    <b class="caret"></b>
-                    <i class="fas fa-lg fa-fw m-r-10 fa-archive"></i>
-                    <span>Product</span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="{{ active('admin.product-type.index') }}">
-                        <a href="{{ route('admin.product-type.index') }}">Product Type</a>
                     </li>
                 </ul>
             </li>

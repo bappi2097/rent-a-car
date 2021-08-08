@@ -27,7 +27,7 @@ class CarController extends Controller
         $car = auth()->user()->driver->car;
         if (empty($car)) {
             return view("driver.pages.car.create", [
-                "carCategories" => CarCategory::with(["carModelCategory", "carCoveredCategory", "carSizeCategory", "carWeightCategory", "carTripCategories"])->get(),
+                "carCategories" => CarCategory::with(["carModelCategory"])->get(),
             ]);
         }
         return view("driver.pages.car.show", [
@@ -78,7 +78,7 @@ class CarController extends Controller
     {
         return view("driver.pages.car.edit", [
             "car" => $car,
-            "carCategories" => CarCategory::with(["carModelCategory", "carCoveredCategory", "carSizeCategory", "carWeightCategory", "carTripCategories"])->get(),
+            "carCategories" => CarCategory::with(["carModelCategory"])->get(),
         ]);
     }
 

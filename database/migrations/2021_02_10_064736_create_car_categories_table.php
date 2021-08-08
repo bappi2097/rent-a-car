@@ -16,9 +16,6 @@ class CreateCarCategoriesTable extends Migration
         Schema::create('car_categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId("car_model_category_id")->constrained("car_model_categories")->onDelete("cascade");
-            $table->foreignId("car_covered_category_id")->constrained("car_covered_categories")->onDelete("cascade");
-            $table->foreignId("car_size_category_id")->constrained("car_size_categories")->onDelete("cascade");
-            $table->foreignId("car_weight_category_id")->constrained("car_weight_categories")->onDelete("cascade");
             $table->text("description")->nullable();
             $table->text("image")->nullable();
             $table->softDeletes();

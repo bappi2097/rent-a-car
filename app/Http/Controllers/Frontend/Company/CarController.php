@@ -41,7 +41,7 @@ class CarController extends Controller
     public function create()
     {
         return view("company.pages.car.create", [
-            "carCategories" => CarCategory::with(["carModelCategory", "carCoveredCategory", "carSizeCategory", "carWeightCategory", "carTripCategories"])->get(),
+            "carCategories" => CarCategory::with(["carModelCategory"])->get(),
         ]);
     }
 
@@ -117,7 +117,7 @@ class CarController extends Controller
     {
         return view("company.pages.car.edit", [
             "car" => $car,
-            "carCategories" => CarCategory::with(["carModelCategory", "carCoveredCategory", "carSizeCategory", "carWeightCategory", "carTripCategories"])->get(),
+            "carCategories" => CarCategory::with(["carModelCategory"])->get(),
         ]);
     }
 
