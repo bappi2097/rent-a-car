@@ -1,46 +1,46 @@
 @extends('admin.layout.app')
 @section('content')
-<a href="{{route('admin.truck-covered-category.create')}}" class="btn btn-primary">Add Data</a>
-<div class="col-12 mt-3 bg-white rounded p-3">
-    <div class="table-responsive">
-        <table class="table table-striped m-b-0" id="myTable">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th width="1%">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($truckCoveredCategories as $index => $truckCoveredCategory)
-                <tr>
-                    <td>{{$index+1}}</td>
-                    <td>{{$truckCoveredCategory->name}}</td>
-                    <td class="with-btn" nowrap="">
-                        <a href="{{route('admin.truck-covered-category.edit', $truckCoveredCategory->id)}}"
-                            class="btn btn-sm btn-primary width-60 m-r-2">Edit</a>
-                        <a href="javascript:void(0)" class="btn btn-sm btn-danger width-60"
-                            onclick="event.preventDefault(); document.getElementById('language{{ $index }}').submit();">
-                            Delete
-                        </a>
-                        <form id="language{{ $index }}"
-                            action="{{ route('admin.truck-covered-category.destroy', $truckCoveredCategory->id) }}"
-                            method="POST" style="display: none;">
-                            @csrf
-                            @method('DELETE')
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <a href="{{ route('admin.car-covered-category.create') }}" class="btn btn-primary">Add Data</a>
+    <div class="col-12 mt-3 bg-white rounded p-3">
+        <div class="table-responsive">
+            <table class="table table-striped m-b-0" id="myTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th width="1%">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($carCoveredCategories as $index => $carCoveredCategory)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $carCoveredCategory->name }}</td>
+                            <td class="with-btn" nowrap="">
+                                <a href="{{ route('admin.car-covered-category.edit', $carCoveredCategory->id) }}"
+                                    class="btn btn-sm btn-primary width-60 m-r-2">Edit</a>
+                                <a href="javascript:void(0)" class="btn btn-sm btn-danger width-60"
+                                    onclick="event.preventDefault(); document.getElementById('language{{ $index }}').submit();">
+                                    Delete
+                                </a>
+                                <form id="language{{ $index }}"
+                                    action="{{ route('admin.car-covered-category.destroy', $carCoveredCategory->id) }}"
+                                    method="POST" style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 @endsection
 @push('script')
-<script>
-    $(document).ready( function () {
-        $('#myTable').DataTable();
-        } );
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
 @endpush

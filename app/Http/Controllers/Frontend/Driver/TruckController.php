@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Frontend\Driver;
 
 use App\Http\Controllers\Controller;
 use App\Models\DriverDetail;
-use App\Models\Truck;
-use App\Models\TruckCategory;
+use App\Models\Car;
+use App\Models\CarCategory;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class TruckController extends Controller
+class CarController extends Controller
 {
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Truck  $truck
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
     public function show()
@@ -24,61 +24,61 @@ class TruckController extends Controller
             Toastr::warning("Please Complete Your Profile", "Warning");
             return redirect()->route("driver.my-profile.show");
         }
-        $truck = auth()->user()->driver->truck;
-        if (empty($truck)) {
-            return view("driver.pages.truck.create", [
-                "truckCategories" => TruckCategory::with(["truckModelCategory", "truckCoveredCategory", "truckSizeCategory", "truckWeightCategory", "truckTripCategories"])->get(),
+        $car = auth()->user()->driver->car;
+        if (empty($car)) {
+            return view("driver.pages.car.create", [
+                "carCategories" => CarCategory::with(["carModelCategory", "carCoveredCategory", "carSizeCategory", "carWeightCategory", "carTripCategories"])->get(),
             ]);
         }
-        return view("driver.pages.truck.show", [
-            "truck" => $truck
+        return view("driver.pages.car.show", [
+            "car" => $car
         ]);
     }
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Truck  $truck
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $locale)
     {
         $this->validate($request, [
             "image" => "required|file",
-            "truck_category_id" => "required|exists:truck_categories,id",
+            "car_category_id" => "required|exists:car_categories,id",
             "license" => "required|file",
-            "truck_no" => "required|string",
+            "car_no" => "required|string",
         ]);
 
         $data = [
-            "image" => $request->hasFile('image') ? Storage::disk("local")->put("images\\truck\\image", $request->image) : "",
-            "license" => $request->hasFile('license') ? Storage::disk("local")->put("images\\truck\\license", $request->license) : "",
-            "truck_category_id" => $request->truck_category_id,
-            "truck_no" => $request->truck_no,
+            "image" => $request->hasFile('image') ? Storage::disk("local")->put("images\\car\\image", $request->image) : "",
+            "license" => $request->hasFile('license') ? Storage::disk("local")->put("images\\car\\license", $request->license) : "",
+            "car_category_id" => $request->car_category_id,
+            "car_no" => $request->car_no,
             "is_valid" => 0,
         ];
-        $driver = DriverDetail::find(auth()->user()->driver->id)->with("truck")->first();
-        $truck = new Truck($data);
-        if ($truck->save()) {
-            $driver->update(["truck_id" => $truck->id]);
-            Toastr::success("Truck Added Successfully", "Success");
+        $driver = DriverDetail::find(auth()->user()->driver->id)->with("car")->first();
+        $car = new Car($data);
+        if ($car->save()) {
+            $driver->update(["car_id" => $car->id]);
+            Toastr::success("Car Added Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }
-        return redirect()->route("driver.truck.show");
+        return redirect()->route("driver.car.show");
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Truck  $truck
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function edit($locale, Truck $truck)
+    public function edit($locale, Car $car)
     {
-        return view("driver.pages.truck.edit", [
-            "truck" => $truck,
-            "truckCategories" => TruckCategory::with(["truckModelCategory", "truckCoveredCategory", "truckSizeCategory", "truckWeightCategory", "truckTripCategories"])->get(),
+        return view("driver.pages.car.edit", [
+            "car" => $car,
+            "carCategories" => CarCategory::with(["carModelCategory", "carCoveredCategory", "carSizeCategory", "carWeightCategory", "carTripCategories"])->get(),
         ]);
     }
 
@@ -87,44 +87,44 @@ class TruckController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Truck  $truck
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $locale, Truck $truck)
+    public function update(Request $request, $locale, Car $car)
     {
         $this->validate($request, [
             "image" => "nullable|file",
-            "truck_category_id" => "required|exists:truck_categories,id",
+            "car_category_id" => "required|exists:car_categories,id",
             "license" => "nullable|file",
-            "truck_no" => "required|string",
+            "car_no" => "required|string",
         ]);
 
         $data = [
-            "truck_category_id" => $request->truck_category_id,
-            "truck_no" => $request->truck_no,
+            "car_category_id" => $request->car_category_id,
+            "car_no" => $request->car_no,
             "is_valid" => 0,
         ];
 
         if ($request->hasFile('image')) {
-            if (Storage::disk("local")->exists($truck->image)) {
-                Storage::disk("local")->delete($truck->image);
+            if (Storage::disk("local")->exists($car->image)) {
+                Storage::disk("local")->delete($car->image);
             }
-            $data["image"] = Storage::disk("local")->put("images\\truck\\image", $request->image);
+            $data["image"] = Storage::disk("local")->put("images\\car\\image", $request->image);
         }
 
 
         if ($request->hasFile('license')) {
-            if (Storage::disk("local")->exists($truck->license)) {
-                Storage::disk("local")->delete($truck->license);
+            if (Storage::disk("local")->exists($car->license)) {
+                Storage::disk("local")->delete($car->license);
             }
-            $data["license"] = Storage::disk("local")->put("images\\truck\\license", $request->license);
+            $data["license"] = Storage::disk("local")->put("images\\car\\license", $request->license);
         }
-        $truck->fill($data);
-        if ($truck->save()) {
-            Toastr::success("Truck Updated Successfully", "Success");
+        $car->fill($data);
+        if ($car->save()) {
+            Toastr::success("Car Updated Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }
-        return redirect()->route("driver.truck.show");
+        return redirect()->route("driver.car.show");
     }
 }

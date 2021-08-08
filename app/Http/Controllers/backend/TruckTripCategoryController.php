@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\TruckTripCategory;
+use App\Models\CarTripCategory;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
-class TruckTripCategoryController extends Controller
+class CarTripCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class TruckTripCategoryController extends Controller
      */
     public function index()
     {
-        return view("admin.pages.truck-trip.index", [
-            "truckTripCategories" => TruckTripCategory::all(),
+        return view("admin.pages.car-trip.index", [
+            "carTripCategories" => CarTripCategory::all(),
         ]);
     }
 
@@ -28,7 +28,7 @@ class TruckTripCategoryController extends Controller
      */
     public function create()
     {
-        return view("admin.pages.truck-trip.create");
+        return view("admin.pages.car-trip.create");
     }
 
     /**
@@ -40,17 +40,17 @@ class TruckTripCategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "name" => "required|string|max:100|unique:truck_trip_categories,name",
+            "name" => "required|string|max:100|unique:car_trip_categories,name",
         ]);
 
         $data = [
             "name" => $request->name,
         ];
 
-        $truckTripCategory = new TruckTripCategory($data);
+        $carTripCategory = new CarTripCategory($data);
 
-        if ($truckTripCategory->save()) {
-            Toastr::success("Truck Trip Added Successfully", "Success");
+        if ($carTripCategory->save()) {
+            Toastr::success("Car Trip Added Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }
@@ -60,10 +60,10 @@ class TruckTripCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TruckTripCategory  $truckTripCategory
+     * @param  \App\Models\CarTripCategory  $carTripCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(TruckTripCategory $truckTripCategory)
+    public function show(CarTripCategory $carTripCategory)
     {
         //
     }
@@ -71,13 +71,13 @@ class TruckTripCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TruckTripCategory  $truckTripCategory
+     * @param  \App\Models\CarTripCategory  $carTripCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(TruckTripCategory $truckTripCategory)
+    public function edit(CarTripCategory $carTripCategory)
     {
-        return view("admin.pages.truck-trip.edit", [
-            "truckTripCategory" => $truckTripCategory
+        return view("admin.pages.car-trip.edit", [
+            "carTripCategory" => $carTripCategory
         ]);
     }
 
@@ -85,23 +85,23 @@ class TruckTripCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TruckTripCategory  $truckTripCategory
+     * @param  \App\Models\CarTripCategory  $carTripCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TruckTripCategory $truckTripCategory)
+    public function update(Request $request, CarTripCategory $carTripCategory)
     {
         $this->validate($request, [
-            "name" => "required|string|max:100|unique:truck_trip_categories,name," . $truckTripCategory->id,
+            "name" => "required|string|max:100|unique:car_trip_categories,name," . $carTripCategory->id,
         ]);
 
         $data = [
             "name" => $request->name,
         ];
 
-        $truckTripCategory->fill($data);
+        $carTripCategory->fill($data);
 
-        if ($truckTripCategory->save()) {
-            Toastr::success("Truck Trip Updated Successfully", "Success");
+        if ($carTripCategory->save()) {
+            Toastr::success("Car Trip Updated Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }
@@ -111,13 +111,13 @@ class TruckTripCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TruckTripCategory  $truckTripCategory
+     * @param  \App\Models\CarTripCategory  $carTripCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TruckTripCategory $truckTripCategory)
+    public function destroy(CarTripCategory $carTripCategory)
     {
-        if ($truckTripCategory->delete()) {
-            Toastr::success("Truck Trip Deleted Successfully", "Success");
+        if ($carTripCategory->delete()) {
+            Toastr::success("Car Trip Deleted Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }

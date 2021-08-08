@@ -10,7 +10,7 @@ class TripBid extends Model
     use HasFactory;
     protected $fillable = [
         "trip_id",
-        "truck_id",
+        "car_id",
         "amount",
         "status",
     ];
@@ -20,9 +20,9 @@ class TripBid extends Model
         return $this->belongsTo(Trip::class, "trip_id");
     }
 
-    public function truck()
+    public function car()
     {
-        return $this->belongsTo(Truck::class, "truck_id");
+        return $this->belongsTo(Car::class, "car_id");
     }
     public function isApproved()
     {
@@ -40,15 +40,15 @@ class TripBid extends Model
     public function approveNotification($text = "", $status = "Approve", $url = "")
     {
         $text = $this->trip->customer->user->name . " Bid " . $status;
-        if ($this->truck->isDriver()) {
-            return $this->truck->driver->user->notifications()->save(new Notification([
+        if ($this->car->isDriver()) {
+            return $this->car->driver->user->notifications()->save(new Notification([
                 "trip_id" => $this->trip_id,
                 "trip_bid_id" => $this->id,
                 "text" => $text,
                 "url" => $url
             ]));
         } else {
-            return $this->truck->user->notifications()->save(new Notification([
+            return $this->car->user->notifications()->save(new Notification([
                 "trip_id" => $this->trip_id,
                 "trip_bid_id" => $this->id,
                 "text" => $text,

@@ -15,7 +15,8 @@
         <div>
             <ul class="sidebar-list">
                 <li class="sidebar-list-item">
-                    <a class="sidebar-link {{ active('company.dashboard') }}" href="{{ route('company.dashboard') }}">
+                    <a class="sidebar-link {{ active('company.dashboard') }}"
+                        href="{{ route('company.dashboard') }}">
                         <span class="sidebar-icon">
                             <i class="icon-dashboard"></i>
                         </span>
@@ -77,12 +78,12 @@
                     </ul>
                 </li>
                 <li class="sidebar-list-item">
-                    <a class="sidebar-link {{ active('company.truck.index') }}"
-                        href="{{ route('company.truck.index') }}">
+                    <a class="sidebar-link {{ active('company.car.index') }}"
+                        href="{{ route('company.car.index') }}">
                         <span class="sidebar-icon">
-                            <i class="icon-truck"></i>
+                            <i class="icon-car"></i>
                         </span>
-                        <span class="sidebar-link-name">Truck</span>
+                        <span class="sidebar-link-name">Car</span>
                         <span class="ml-auto nav-rtl icon-right">
                             <i class="icon-chevron-right"></i>
                         </span>

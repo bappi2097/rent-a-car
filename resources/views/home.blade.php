@@ -22,7 +22,7 @@
             @endforeach
         </div>
     </div>
-    @include('layouts.partials.category-slider', ["truckCategories" => $truckCategories])
+    @include('layouts.partials.category-slider', ["carCategories" => $carCategories])
 
     <div id="latest-blogs-div" class="container py-5 my-5 text-center">
         <h3>{{ __('frontend/home.latest-news') }}</h3>
@@ -83,6 +83,5 @@
             groupCells: 1,
             autoPlay: 3000,
         });
-
     </script>
 @endpush

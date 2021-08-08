@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TruckSizeCategory extends Model
+class CarSizeCategory extends Model
 {
     use HasFactory;
     protected $fillable = [
         "name", "size"
     ];
-    public function truckCategories()
+    public function carCategories()
     {
-        return $this->hasMany(TruckCategory::class, "truck_size_category_id");
+        return $this->hasMany(CarCategory::class, "car_size_category_id");
     }
 }

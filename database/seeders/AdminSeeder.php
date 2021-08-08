@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
         $user = User::create([
             "name" => "John Doe",
             "email" => "admin@admin.com",
-            "mobile_no" => "01726257333",
+            "mobile_no" => "01700000000",
             "password" => bcrypt("password"),
         ]);
         $user->assignRole('admin');
@@ -26,7 +26,7 @@ class AdminSeeder extends Seeder
         $user = User::create([
             "name" => "John Doe",
             "email" => "john@example.com",
-            "mobile_no" => "01726257333",
+            "mobile_no" => "01700000000",
             "password" => bcrypt("admin123"),
         ]);
         $user->assignRole('customer');

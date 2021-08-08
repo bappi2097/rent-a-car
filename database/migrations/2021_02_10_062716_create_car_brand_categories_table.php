@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTruckWeightCategoriesTable extends Migration
+class CreateCarBrandCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateTruckWeightCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('truck_weight_categories', function (Blueprint $table) {
+        Schema::create('car_brand_categories', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->double("weight");
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ class CreateTruckWeightCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('truck_weight_categories');
+        Schema::dropIfExists('car_brand_categories');
     }
 }

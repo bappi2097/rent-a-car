@@ -12,14 +12,14 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'copyright' => "حقوق النشر © 2019-2020 Traincu",
+    'copyright' => "حقوق النشر © 2019-2020 Rent A Car",
     'right-reserved' => "كل الحقوق محفوظة",
     'quick-links' => "روابط سريعة",
     'privacy-policy' => "سياسة خاصة",
     'contact-us' => "اتصل بنا",
     'terms-condition' => "الشروط والأحكام",
     'menu' => "قائمة ",
-    'truck-operator' => " مشغل شاحنة ",
+    'car-operator' => " مشغل شاحنة ",
     'faq' => " التعليمات  ",
     'blog' => "مقالات  ",
     'newsletter' => "النشرة الإخبارية  ",

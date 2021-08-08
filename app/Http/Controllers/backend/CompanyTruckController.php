@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Models\Truck;
+use App\Models\Car;
 use Illuminate\Http\Request;
 use App\Models\CompanyDetail;
-use App\Models\TruckCategory;
+use App\Models\CarCategory;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Storage;
 
-class CompanyTruckController extends Controller
+class CompanyCarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class CompanyTruckController extends Controller
      */
     public function index(CompanyDetail $company)
     {
-        return view("admin.pages.company-truck.index", [
+        return view("admin.pages.company-car.index", [
             "company" => $company
         ]);
     }
@@ -31,9 +31,9 @@ class CompanyTruckController extends Controller
      */
     public function create(CompanyDetail $company)
     {
-        return view('admin.pages.company-truck.create', [
+        return view('admin.pages.company-car.create', [
             "company" =>  $company,
-            "truckCategories" => TruckCategory::with(["truckModelCategory", "truckCoveredCategory", "truckSizeCategory", "truckWeightCategory", "truckTripCategories"])->get(),
+            "carCategories" => CarCategory::with(["carModelCategory", "carCoveredCategory", "carSizeCategory", "carWeightCategory", "carTripCategories"])->get(),
         ]);
     }
 
@@ -46,34 +46,34 @@ class CompanyTruckController extends Controller
     public function store(Request $request, CompanyDetail $company)
     {
         $this->validate($request, [
-            "truck_category_id" => "required|exists:truck_categories,id",
-            "truck_no" => "required|string|max:100",
+            "car_category_id" => "required|exists:car_categories,id",
+            "car_no" => "required|string|max:100",
             "license" => "required|file",
             "image" => "required|file",
         ]);
 
 
         if ($request->hasFile('image')) {
-            $image = Storage::disk("local")->put("images\\truck\\image", $request->image);
+            $image = Storage::disk("local")->put("images\\car\\image", $request->image);
         }
 
 
         if ($request->hasFile('license')) {
-            $license = Storage::disk("local")->put("images\\truck\\license", $request->license);
+            $license = Storage::disk("local")->put("images\\car\\license", $request->license);
         }
         $data = [
-            "truck_no" => $request->truck_no,
+            "car_no" => $request->car_no,
             "license" => $license,
             "image" => $image,
-            "truck_category_id" => $request->truck_category_id,
+            "car_category_id" => $request->car_category_id,
             "is_valid" => 1,
         ];
 
-        $truck = new Truck($data);
+        $car = new Car($data);
 
-        if ($truck->save()) {
-            $company->trucks()->attach($truck->id);
-            Toastr::success('Truck Added Successfully', 'Success');
+        if ($car->save()) {
+            $company->cars()->attach($car->id);
+            Toastr::success('Car Added Successfully', 'Success');
         } else {
             Toastr::error('Something Went Wrong', 'Error');
         }
@@ -83,10 +83,10 @@ class CompanyTruckController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Truck  $truck
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function show(Truck $truck, CompanyDetail $company)
+    public function show(Car $car, CompanyDetail $company)
     {
         //
     }
@@ -94,15 +94,15 @@ class CompanyTruckController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Truck  $truck
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function edit(CompanyDetail $company, Truck $truck)
+    public function edit(CompanyDetail $company, Car $car)
     {
-        return view("admin.pages.company-truck.edit", [
+        return view("admin.pages.company-car.edit", [
             "company" => $company,
-            "truck" => $truck,
-            "truckCategories" => TruckCategory::with(["truckModelCategory", "truckCoveredCategory", "truckSizeCategory", "truckWeightCategory", "truckTripCategories"])->get(),
+            "car" => $car,
+            "carCategories" => CarCategory::with(["carModelCategory", "carCoveredCategory", "carSizeCategory", "carWeightCategory", "carTripCategories"])->get(),
         ]);
     }
 
@@ -110,42 +110,42 @@ class CompanyTruckController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Truck  $truck
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CompanyDetail $company, Truck $truck)
+    public function update(Request $request, CompanyDetail $company, Car $car)
     {
         $this->validate($request, [
-            "truck_category_id" => "required|exists:truck_categories,id",
-            "truck_no" => "required|string|max:100",
+            "car_category_id" => "required|exists:car_categories,id",
+            "car_no" => "required|string|max:100",
             "license" => "nullable|file",
             "image" => "nullable|file",
         ]);
 
         $data = [
-            "truck_no" => $request->truck_no,
-            "truck_category_id" => $request->truck_category_id,
+            "car_no" => $request->car_no,
+            "car_category_id" => $request->car_category_id,
         ];
 
         if ($request->hasFile('image')) {
-            if (Storage::disk("local")->exists($truck->image)) {
-                Storage::disk("local")->delete($truck->image);
+            if (Storage::disk("local")->exists($car->image)) {
+                Storage::disk("local")->delete($car->image);
             }
-            $data["image"] = Storage::disk("local")->put("images\\truck\\image", $request->image);
+            $data["image"] = Storage::disk("local")->put("images\\car\\image", $request->image);
         }
 
 
         if ($request->hasFile('license')) {
-            if (Storage::disk("local")->exists($truck->license)) {
-                Storage::disk("local")->delete($truck->license);
+            if (Storage::disk("local")->exists($car->license)) {
+                Storage::disk("local")->delete($car->license);
             }
-            $data["license"] = Storage::disk("local")->put("images\\truck\\license", $request->license);
+            $data["license"] = Storage::disk("local")->put("images\\car\\license", $request->license);
         }
 
-        $truck->fill($data);
+        $car->fill($data);
 
-        if ($truck->save()) {
-            Toastr::success('Truck Updated Successfully', 'Success');
+        if ($car->save()) {
+            Toastr::success('Car Updated Successfully', 'Success');
         } else {
             Toastr::error('Something Went Wrong', 'Error');
         }
@@ -155,23 +155,23 @@ class CompanyTruckController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Truck  $truck
+     * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CompanyDetail $company, Truck $truck)
+    public function destroy(CompanyDetail $company, Car $car)
     {
-        if (Storage::disk("local")->exists($truck->image)) {
-            Storage::disk("local")->delete($truck->image);
+        if (Storage::disk("local")->exists($car->image)) {
+            Storage::disk("local")->delete($car->image);
         }
 
-        if (Storage::disk("local")->exists($truck->license)) {
-            Storage::disk("local")->delete($truck->license);
+        if (Storage::disk("local")->exists($car->license)) {
+            Storage::disk("local")->delete($car->license);
         }
 
-        $company->trucks()->detach($truck->id);
+        $company->cars()->detach($car->id);
 
-        if ($truck->delete()) {
-            Toastr::success('Truck Deleted Successfully', 'Success');
+        if ($car->delete()) {
+            Toastr::success('Car Deleted Successfully', 'Success');
         } else {
             Toastr::error('Something Went Wrong', 'Error');
         }

@@ -110,10 +110,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasRole("driver");
     }
 
-    public function setNotification($truck_id, $text = "", $url = "")
+    public function setNotification($car_id, $text = "", $url = "")
     {
         return $this->notifications()->save(new Notification([
-            "truck_id" => $truck_id,
+            "car_id" => $car_id,
             "text" => $text,
             "url" => $url
         ]));

@@ -11,7 +11,7 @@ class Trip extends Model
 
     protected $fillable = [
         "customer_id",
-        "truck_category_id",
+        "car_category_id",
         "product_id",
         "load_location",
         "unload_location",
@@ -28,9 +28,9 @@ class Trip extends Model
         return $this->customer->user();
     }
 
-    public function truckCategory()
+    public function carCategory()
     {
-        return $this->belongsTo(TruckCategory::class, "truck_category_id");
+        return $this->belongsTo(CarCategory::class, "car_category_id");
     }
 
     public function product()
@@ -40,20 +40,20 @@ class Trip extends Model
 
     public function tripBids()
     {
-        return $this->hasMany(TripBid::class, "trip_id")->with("truck");
+        return $this->hasMany(TripBid::class, "trip_id")->with("car");
     }
 
     public function hasBid(CompanyDetail $companyDetail)
     {
-        $truckIds = $companyDetail->trucks->pluck("id")->all();
-        $trip = $this->tripBids->whereIn("truck_id", $truckIds)->first();
+        $carIds = $companyDetail->cars->pluck("id")->all();
+        $trip = $this->tripBids->whereIn("car_id", $carIds)->first();
         return empty($trip) ? false : $trip->exists();
     }
 
     public function companyBid(CompanyDetail $companyDetail)
     {
-        $truckIds = $companyDetail->trucks->pluck("id")->all();
-        return $this->hasBid($companyDetail) ? $this->tripBids->whereIn("truck_id", $truckIds)->first() : null;
+        $carIds = $companyDetail->cars->pluck("id")->all();
+        return $this->hasBid($companyDetail) ? $this->tripBids->whereIn("car_id", $carIds)->first() : null;
     }
 
     public function hasBidDriver(DriverDetail $driverDetail)
@@ -63,7 +63,7 @@ class Trip extends Model
 
     public function driverBid(DriverDetail $driverDetail)
     {
-        return $this->tripBids->where("truck_id", $driverDetail->truck->id)->first();
+        return $this->tripBids->where("car_id", $driverDetail->car->id)->first();
     }
 
     public function isCanceled()
@@ -87,10 +87,10 @@ class Trip extends Model
     public function addCustomerNotification(TripBid $trip_bid, $url = "", $text = "")
     {
         if (empty($text)) {
-            if ($trip_bid->truck->isDriver()) {
-                $text = $trip_bid->truck->driver->user->name . " make bid for Trip<br> Amount: " . $trip_bid->amount;
+            if ($trip_bid->car->isDriver()) {
+                $text = $trip_bid->car->driver->user->name . " make bid for Trip<br> Amount: " . $trip_bid->amount;
             } else {
-                $text = $trip_bid->truck->company->first()->user . " make bid for Trip<br> Amount: " . $trip_bid->amount;
+                $text = $trip_bid->car->company->first()->user . " make bid for Trip<br> Amount: " . $trip_bid->amount;
             }
         }
 

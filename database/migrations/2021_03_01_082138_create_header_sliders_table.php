@@ -16,7 +16,7 @@ class CreateHeaderSlidersTable extends Migration
         Schema::create('header_sliders', function (Blueprint $table) {
             $table->id();
             $table->text('image');
-            $table->enum('category', ["home", "truck-operator"])->default("home");
+            $table->enum('category', ["home", "car-operator"])->default("home");
             $table->integer('position')->default(0);
             $table->softDeletes();
             $table->timestamps();

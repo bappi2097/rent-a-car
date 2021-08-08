@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend\Driver;
 
 use App\Models\Trip;
 use App\Models\User;
-use App\Models\Truck;
+use App\Models\Car;
 use App\Models\Product;
 use App\Models\ProductValue;
 use Illuminate\Http\Request;
@@ -26,8 +26,8 @@ class TripController extends Controller
         $datas = \DB::table("driver_details")
             ->where("driver_details.id", auth()->user()->driver->id)
             ->where("trips.status", 1)
-            ->join("trucks", "driver_details.truck_id", "trucks.id")
-            ->join("trip_bids", "trucks.id", "=", "trip_bids.truck_id")
+            ->join("cars", "driver_details.car_id", "cars.id")
+            ->join("trip_bids", "cars.id", "=", "trip_bids.car_id")
             ->join("trips", "trip_bids.trip_id", "=", "trips.id")
             ->select(
                 "trips.id as id",
@@ -54,8 +54,8 @@ class TripController extends Controller
         $datas = \DB::table("driver_details")
             ->where("driver_details.id", auth()->user()->driver->id)
             ->where("trips.status", 3)
-            ->join("trucks", "driver_details.truck_id", "trucks.id")
-            ->join("trip_bids", "trucks.id", "=", "trip_bids.truck_id")
+            ->join("cars", "driver_details.car_id", "cars.id")
+            ->join("trip_bids", "cars.id", "=", "trip_bids.car_id")
             ->join("trips", "trip_bids.trip_id", "=", "trips.id")
             ->select(
                 "trips.id as id",
@@ -65,10 +65,10 @@ class TripController extends Controller
                 "trips.load_time as load_time",
                 "trips.status as trip_status",
                 "trip_bids.status as trip_bid_status",
-                "trucks.id as truck_id",
+                "cars.id as car_id",
             )->get();
         $datas = $datas->map(function ($data) {
-            $data->truck = Truck::where("id", $data->truck_id)->first();
+            $data->car = Car::where("id", $data->car_id)->first();
             return $data;
         });
         return view("driver.pages.trip.history-trip", [
@@ -82,7 +82,7 @@ class TripController extends Controller
             "load_location" => "required|string",
             "unload_location" => "required|string",
             "load_time" => "required",
-            "truck_category_id" => "required",
+            "car_category_id" => "required",
             "products_description" => "required|string",
             "product_types" => "nullable|array",
             "worker" => "nullable",
@@ -106,7 +106,7 @@ class TripController extends Controller
             $tripData = [
                 "product_id" => $product->id,
                 "company_id" => auth()->user()->driver->id,
-                "truck_category_id" => $request->truck_category_id,
+                "car_category_id" => $request->car_category_id,
                 "load_location" => $request->load_location,
                 "unload_location" => $request->unload_location,
                 "load_time" => $request->load_time,

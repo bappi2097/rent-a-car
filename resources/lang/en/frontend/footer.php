@@ -12,14 +12,14 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'copyright' => "Copyright © 2019-2020 Traincu",
+    'copyright' => "Copyright © 2019-2020 Rent A Car",
     'right-reserved' => "All Rights Reserved",
     'quick-links' => "Quick Links",
     'privacy-policy' => "Privacy & Policy",
     'contact-us' => "Contact Us",
     'terms-condition' => "Terms & Condition",
     'menu' => "Menu",
-    'truck-operator' => "Truck Operator",
+    'car-operator' => "Car Operator",
     'faq' => "FAQ",
     'blog' => "Blog",
     'newsletter' => "Newsletter",

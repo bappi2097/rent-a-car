@@ -67,7 +67,7 @@ function tripStatus($no)
             return ["Finished", "danger"];
     }
 }
-function truckValid($status)
+function carValid($status)
 {
     switch ($status) {
         case 0:

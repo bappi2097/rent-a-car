@@ -1,39 +1,39 @@
 @extends('company.layout.master')
 @section('content')
     <div class="bg-white p-20 col-md-10 m-t-30">
-        <a href="{{ route('company.truck.index') }}" class="btn btn-outline-primary">Back</a>
+        <a href="{{ route('company.car.index') }}" class="btn btn-outline-primary">Back</a>
         <div class="bg-white p-20 col-12 m-t-30">
-            <form action="{{ route('company.truck.update', $truck->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('company.car.update', $car->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <fieldset>
-                    <legend class="m-b-15">Edit Truck</legend>
+                    <legend class="m-b-15">Edit Car</legend>
                     <div class="form-group">
-                        <label for="truck_no">Truck No</label>
-                        <input type="text" class="form-control" name="truck_no" id="truck_no" value="{{ $truck->truck_no }}"
+                        <label for="car_no">Car No</label>
+                        <input type="text" class="form-control" name="car_no" id="car_no" value="{{ $car->car_no }}"
                             placeholder="">
-                        @error('truck_no')
+                        @error('car_no')
                             <span class="text-red">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="brand">Truck Category</label>
-                        <select name="truck_category_id" id="truck_category_id" class="form-control selectpicker"
+                        <label for="brand">Car Category</label>
+                        <select name="car_category_id" id="car_category_id" class="form-control selectpicker"
                             style="border: 1px solid #ced4da; border-radius: 0.25rem;" data-live-search="true">
                             <option selected>Choose Category</option>
-                            @foreach ($truckCategories as $item)
-                                <option value="{{ $item->id }}" {{ selected($item->id, $truck->truck_category_id) }}>
-                                    {{ $item->TruckSizeCategory->size . ' Feet, ' . $item->TruckWeightCategory->weight . ' Ton, ' . $item->TruckModelCategory->TruckBrandCategory->name . '-' . $item->TruckModelCategory->model }}
+                            @foreach ($carCategories as $item)
+                                <option value="{{ $item->id }}" {{ selected($item->id, $car->car_category_id) }}>
+                                    {{ $item->CarSizeCategory->size . ' Feet, ' . $item->CarWeightCategory->weight . ' Ton, ' . $item->CarModelCategory->CarBrandCategory->name . '-' . $item->CarModelCategory->model }}
                                 </option>
                             @endforeach
                         </select>
-                        @error('truck_category_id')
+                        @error('car_category_id')
                             <span>{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <img id="user-image" src="{{ asset($truck->image ?: 'images/truck-placeholder.png') }}"
+                            <img id="user-image" src="{{ asset($car->image ?: 'images/car-placeholder.png') }}"
                                 alt="your image" width="118" height="122" /><br>
                             <input type='file' name="image" id="user-user-btn" style="display: none;"
                                 onchange="readURL(this);" accept="user/*" />
@@ -41,7 +41,7 @@
                                 onclick="document.getElementById('user-user-btn').click();" />
                         </div>
                         <div class="col-md-6">
-                            <img id="license-image" src="{{ asset($truck->license ?: 'images/id-card.png') }}"
+                            <img id="license-image" src="{{ asset($car->license ?: 'images/id-card.png') }}"
                                 alt="your license" width="175" height="100" /><br>
                             <input type='file' name="license" id="user-license-btn" style="display: none;"
                                 onchange="readLicenseURL(this);" accept="license/*" />
@@ -82,6 +82,5 @@
         $(function() {
             $('.selectpicker').selectpicker();
         });
-
     </script>
 @endpush

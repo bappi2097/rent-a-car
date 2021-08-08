@@ -5,40 +5,40 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TruckCategory extends Model
+class CarCategory extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        "truck_weight_category_id", "truck_size_category_id", "truck_covered_category_id", "truck_model_category_id", "description", "image",
+        "car_weight_category_id", "car_size_category_id", "car_covered_category_id", "car_model_category_id", "description", "image",
     ];
 
-    public function truckModelCategory()
+    public function carModelCategory()
     {
-        return $this->belongsTo(TruckModelCategory::class, "truck_model_category_id");
+        return $this->belongsTo(CarModelCategory::class, "car_model_category_id");
     }
-    public function truckCoveredCategory()
+    public function carCoveredCategory()
     {
-        return $this->belongsTo(TruckCoveredCategory::class, "truck_covered_category_id");
+        return $this->belongsTo(CarCoveredCategory::class, "car_covered_category_id");
     }
-    public function truckSizeCategory()
+    public function carSizeCategory()
     {
-        return $this->belongsTo(TruckSizeCategory::class, "truck_size_category_id");
+        return $this->belongsTo(CarSizeCategory::class, "car_size_category_id");
     }
-    public function truckWeightCategory()
+    public function carWeightCategory()
     {
-        return $this->belongsTo(TruckWeightCategory::class, "truck_weight_category_id");
+        return $this->belongsTo(CarWeightCategory::class, "car_weight_category_id");
     }
-    public function truckTripCategories()
+    public function carTripCategories()
     {
-        return $this->belongsToMany(TruckTripCategory::class);
+        return $this->belongsToMany(CarTripCategory::class);
     }
-    public function truck()
+    public function car()
     {
-        return $this->hasOne(Truck::class);
+        return $this->hasOne(Car::class);
     }
     public function trip()
     {
-        return $this->hasOne(Trip::class, "truck_category_id");
+        return $this->hasOne(Trip::class, "car_category_id");
     }
 }

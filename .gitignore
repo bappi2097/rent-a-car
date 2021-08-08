@@ -6,8 +6,8 @@
 /public/images/customers
 /public/images/company
 /public/images/drivers
-/public/images/trucks
-/public/images/truck
+/public/images/cars
+/public/images/car
 /storage/*.key
 /vendor
 .env

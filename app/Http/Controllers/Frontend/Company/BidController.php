@@ -23,18 +23,18 @@ class BidController extends Controller
         }
         return view("company.pages.trip.make-bid", [
             "trip" => $trip,
-            "trucks" => auth()->user()->company->trucks,
+            "cars" => auth()->user()->company->cars,
         ]);
     }
     public function create($locale, Request $request, Trip $trip)
     {
         $this->validate($request, [
             "amount" => "required",
-            "truck_id" => "required|exists:trucks,id",
+            "car_id" => "required|exists:cars,id",
         ]);
 
         $data = [
-            "truck_id" => $request->truck_id,
+            "car_id" => $request->car_id,
             "amount" => $request->amount,
             "status" => 0,
             "trip_id" => $trip->id
@@ -45,7 +45,7 @@ class BidController extends Controller
             $trip->addCustomerNotification(
                 $tripBid,
                 route("customer.make-trip.show-trip", $trip->id),
-                $tripBid->truck->company->first()->user->name . " make bid for Trip<br> Amount: " . $tripBid->amount
+                $tripBid->car->company->first()->user->name . " make bid for Trip<br> Amount: " . $tripBid->amount
             );
             Toastr::success("TripBid Successfully Added", "Success");
         } else {

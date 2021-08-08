@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCompanyDetailTruck extends Migration
+class CreateCarWeightCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateCompanyDetailTruck extends Migration
      */
     public function up()
     {
-        Schema::create('company_detail_truck', function (Blueprint $table) {
+        Schema::create('car_weight_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_detail_id')->constrained("company_details")->onDelete('cascade');
-            $table->foreignId('truck_id')->constrained("trucks")->onDelete('cascade');
+            $table->string("name");
+            $table->double("weight");
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateCompanyDetailTruck extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_detail_truck');
+        Schema::dropIfExists('car_weight_categories');
     }
 }

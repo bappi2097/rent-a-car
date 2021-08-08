@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Truck extends Model
+class Car extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "truck_category_id", "truck_no", "license", "image", "is_valid"
+        "car_category_id", "car_no", "license", "image", "is_valid"
     ];
 
     public function company()
@@ -26,19 +26,19 @@ class Truck extends Model
         }
     }
 
-    public function truckCategory()
+    public function carCategory()
     {
-        return $this->belongsTo(TruckCategory::class);
+        return $this->belongsTo(CarCategory::class);
     }
 
     public function tripBid()
     {
-        return $this->hasMany(TripBid::class, "truck_id");
+        return $this->hasMany(TripBid::class, "car_id");
     }
 
     public function driver()
     {
-        return $this->hasOne(DriverDetail::class, "truck_id");
+        return $this->hasOne(DriverDetail::class, "car_id");
     }
 
     public function isCompany()

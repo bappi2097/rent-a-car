@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\TruckWeightCategory;
+use App\Models\CarWeightCategory;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
-class TruckWeightCategoryController extends Controller
+class CarWeightCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class TruckWeightCategoryController extends Controller
      */
     public function index()
     {
-        return view("admin.pages.truck-weight.index", [
-            "truckWeightCategories" => TruckWeightCategory::all()
+        return view("admin.pages.car-weight.index", [
+            "carWeightCategories" => CarWeightCategory::all()
         ]);
     }
 
@@ -28,7 +28,7 @@ class TruckWeightCategoryController extends Controller
      */
     public function create()
     {
-        return view("admin.pages.truck-weight.create");
+        return view("admin.pages.car-weight.create");
     }
 
     /**
@@ -49,10 +49,10 @@ class TruckWeightCategoryController extends Controller
             "weight" => $request->weight,
         ];
 
-        $truckWeight = new TruckWeightCategory($data);
+        $carWeight = new CarWeightCategory($data);
 
-        if ($truckWeight->save()) {
-            Toastr::success("Truck Weight Added Successfully", "Success");
+        if ($carWeight->save()) {
+            Toastr::success("Car Weight Added Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }
@@ -62,10 +62,10 @@ class TruckWeightCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TruckWeightCategory  $truckWeightCategory
+     * @param  \App\Models\CarWeightCategory  $carWeightCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(TruckWeightCategory $truckWeightCategory)
+    public function show(CarWeightCategory $carWeightCategory)
     {
         //
     }
@@ -73,13 +73,13 @@ class TruckWeightCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TruckWeightCategory  $truckWeightCategory
+     * @param  \App\Models\CarWeightCategory  $carWeightCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(TruckWeightCategory $truckWeightCategory)
+    public function edit(CarWeightCategory $carWeightCategory)
     {
-        return view("admin.pages.truck-weight.edit", [
-            "truckWeightCategory" => $truckWeightCategory
+        return view("admin.pages.car-weight.edit", [
+            "carWeightCategory" => $carWeightCategory
         ]);
     }
 
@@ -87,10 +87,10 @@ class TruckWeightCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TruckWeightCategory  $truckWeightCategory
+     * @param  \App\Models\CarWeightCategory  $carWeightCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TruckWeightCategory $truckWeightCategory)
+    public function update(Request $request, CarWeightCategory $carWeightCategory)
     {
         $this->validate($request, [
             'name' => "required|string|max:100",
@@ -101,10 +101,10 @@ class TruckWeightCategoryController extends Controller
             "name" => $request->name,
             "weight" => $request->weight,
         ];
-        $truckWeightCategory->fill($data);
+        $carWeightCategory->fill($data);
 
-        if ($truckWeightCategory->save()) {
-            Toastr::success("Truck Weight Updated Successfully", "Success");
+        if ($carWeightCategory->save()) {
+            Toastr::success("Car Weight Updated Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }
@@ -114,13 +114,13 @@ class TruckWeightCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TruckWeightCategory  $truckWeightCategory
+     * @param  \App\Models\CarWeightCategory  $carWeightCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TruckWeightCategory $truckWeightCategory)
+    public function destroy(CarWeightCategory $carWeightCategory)
     {
-        if ($truckWeightCategory->delete()) {
-            Toastr::success("Truck Weight Deleted Successfully", "Success");
+        if ($carWeightCategory->delete()) {
+            Toastr::success("Car Weight Deleted Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }

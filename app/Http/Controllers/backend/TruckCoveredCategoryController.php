@@ -4,10 +4,10 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\TruckCoveredCategory;
+use App\Models\CarCoveredCategory;
 use Brian2694\Toastr\Facades\Toastr;
 
-class TruckCoveredCategoryController extends Controller
+class CarCoveredCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class TruckCoveredCategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.truck-covered.index', [
-            "truckCoveredCategories" => TruckCoveredCategory::paginate(10)
+        return view('admin.pages.car-covered.index', [
+            "carCoveredCategories" => CarCoveredCategory::paginate(10)
         ]);
     }
 
@@ -28,7 +28,7 @@ class TruckCoveredCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.truck-covered.create');
+        return view('admin.pages.car-covered.create');
     }
 
     /**
@@ -47,10 +47,10 @@ class TruckCoveredCategoryController extends Controller
             "name" => $request->name,
         ];
 
-        $truckCoveredCategory = new TruckCoveredCategory($data);
+        $carCoveredCategory = new CarCoveredCategory($data);
 
-        if ($truckCoveredCategory->save()) {
-            Toastr::success("Truck Covered Added Successfully", "Success");
+        if ($carCoveredCategory->save()) {
+            Toastr::success("Car Covered Added Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }
@@ -60,10 +60,10 @@ class TruckCoveredCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TruckCoveredCategory  $truckCoveredCategory
+     * @param  \App\Models\CarCoveredCategory  $carCoveredCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(TruckCoveredCategory $truckCoveredCategory)
+    public function show(CarCoveredCategory $carCoveredCategory)
     {
         //
     }
@@ -71,13 +71,13 @@ class TruckCoveredCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TruckCoveredCategory  $truckCoveredCategory
+     * @param  \App\Models\CarCoveredCategory  $carCoveredCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(TruckCoveredCategory $truckCoveredCategory)
+    public function edit(CarCoveredCategory $carCoveredCategory)
     {
-        return view("admin.pages.truck-covered.edit", [
-            "truckCoveredCategory" => $truckCoveredCategory
+        return view("admin.pages.car-covered.edit", [
+            "carCoveredCategory" => $carCoveredCategory
         ]);
     }
 
@@ -85,10 +85,10 @@ class TruckCoveredCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TruckCoveredCategory  $truckCoveredCategory
+     * @param  \App\Models\CarCoveredCategory  $carCoveredCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TruckCoveredCategory $truckCoveredCategory)
+    public function update(Request $request, CarCoveredCategory $carCoveredCategory)
     {
         $this->validate($request, [
             'name' => "required|string|max:100",
@@ -97,10 +97,10 @@ class TruckCoveredCategoryController extends Controller
         $data = [
             "name" => $request->name,
         ];
-        $truckCoveredCategory->fill($data);
+        $carCoveredCategory->fill($data);
 
-        if ($truckCoveredCategory->save()) {
-            Toastr::success("Truck Covered Updated Successfully", "Success");
+        if ($carCoveredCategory->save()) {
+            Toastr::success("Car Covered Updated Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }
@@ -110,13 +110,13 @@ class TruckCoveredCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TruckCoveredCategory  $truckCoveredCategory
+     * @param  \App\Models\CarCoveredCategory  $carCoveredCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TruckCoveredCategory $truckCoveredCategory)
+    public function destroy(CarCoveredCategory $carCoveredCategory)
     {
-        if ($truckCoveredCategory->delete()) {
-            Toastr::success("Truck Covered Deleted Successfully", "Success");
+        if ($carCoveredCategory->delete()) {
+            Toastr::success("Car Covered Deleted Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }

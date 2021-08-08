@@ -17,10 +17,10 @@
                             <span
                                 class="badge badge-{{ tripStatus($trip->status)[1] }} text-uppercase p-2">{{ tripStatus($trip->status)[0] }}</span>
                         </div>
-                        <img class="img-fluid" width="100" src="{{ asset('images/truck.png') }}" alt="">
-                        <h6 class="text-weight-bold mt-2">{{ $trip->truckCategory->truckSizeCategory->size }} Feet
-                            {{ $trip->truckCategory->truckWeightCategory->weight }} Ton
-                            {{ $trip->truckCategory->truckCoveredCategory->name }}</h6>
+                        <img class="img-fluid" width="100" src="{{ asset('images/car.png') }}" alt="">
+                        <h6 class="text-weight-bold mt-2">{{ $trip->carCategory->carSizeCategory->size }} Feet
+                            {{ $trip->carCategory->carWeightCategory->weight }} Ton
+                            {{ $trip->carCategory->carCoveredCategory->name }}</h6>
                         <p class="text-muted">{{ date('F j, Y, g:i a', strtotime($trip->load_time)) }}</p>
                         <div>
                             <span class="d-block">
@@ -71,8 +71,8 @@
         @if ($trip->isApprovedBid())
             @php
                 $tripBid = $trip->approvedBid();
-                $tripCompany = $tripBid->truck->company->first();
-                $truckCat = $tripBid->truck->truckCategory;
+                $tripCompany = $tripBid->car->company->first();
+                $carCat = $tripBid->car->carCategory;
             @endphp
             <div class="row">
                 <div class="col-md-12">
@@ -92,9 +92,9 @@
                                                         {{ $tripCompany->user->name }}
                                                     </h5>
                                                     <p class="text-muted">
-                                                        {{ $truckCat->truckModelCategory->model . ' ' . $truckCat->truckModelCategory->truckBrandCategory->name }}
+                                                        {{ $carCat->carModelCategory->model . ' ' . $carCat->carModelCategory->carBrandCategory->name }}
                                                         <br>
-                                                        {{ $truckCat->truckSizeCategory->size . ' Feet ' . $truckCat->truckWeightCategory->weight . ' Ton ' . $truckCat->truckCoveredCategory->name }}
+                                                        {{ $carCat->carSizeCategory->size . ' Feet ' . $carCat->carWeightCategory->weight . ' Ton ' . $carCat->carCoveredCategory->name }}
                                                         <br>
                                                         {{ $tripBid->amount . ' TK' }}
                                                     </p>
@@ -116,8 +116,8 @@
         @else
             @foreach ($trip->tripBids as $tripBid)
                 @php
-                    $tripCompany = $tripBid->truck->company->first();
-                    $truckCat = $tripBid->truck->truckCategory;
+                    $tripCompany = $tripBid->car->company->first();
+                    $carCat = $tripBid->car->carCategory;
                 @endphp
                 <div class="row">
                     <div class="col-md-12">
@@ -137,9 +137,9 @@
                                                             {{ $tripCompany->user->name }}
                                                         </h5>
                                                         <p class="text-muted">
-                                                            {{ $truckCat->truckModelCategory->model . ' ' . $truckCat->truckModelCategory->truckBrandCategory->name }}
+                                                            {{ $carCat->carModelCategory->model . ' ' . $carCat->carModelCategory->carBrandCategory->name }}
                                                             <br>
-                                                            {{ $truckCat->truckSizeCategory->size . ' Feet ' . $truckCat->truckWeightCategory->weight . ' Ton ' . $truckCat->truckCoveredCategory->name }}
+                                                            {{ $carCat->carSizeCategory->size . ' Feet ' . $carCat->carWeightCategory->weight . ' Ton ' . $carCat->carCoveredCategory->name }}
                                                             <br>
                                                             {{ $tripBid->amount . ' TK' }}
                                                         </p>

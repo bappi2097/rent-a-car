@@ -7,7 +7,7 @@ use App\Models\BlogCategory;
 use App\Models\Client;
 use App\Models\HeaderSlider;
 use Illuminate\Http\Request;
-use App\Models\TruckCategory;
+use App\Models\CarCategory;
 
 class HomeController extends Controller
 {
@@ -28,20 +28,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $whyBlogs = BlogCategory::where("slug", "why-choose-traincu")->exists() ? BlogCategory::where("slug", "why-choose-traincu")->first()->blogs()->paginate(3) : null;
+        $whyBlogs = BlogCategory::where("slug", "why-choose-rent-a-car")->exists() ? BlogCategory::where("slug", "why-choose-rent-a-car")->first()->blogs()->paginate(3) : null;
         if (!empty($whyBlogs)) {
             $whyBlogs->reject(function ($blog) {
                 $blog->created = date("M j", strtotime($blog->created_at));
             });
         }
-        $blogs = BlogCategory::where("slug", "!=", "why-choose-traincu")->exists() ? BlogCategory::where("slug", "!=", "why-choose-traincu")->first()->blogs()->paginate(3) : null;
+        $blogs = BlogCategory::where("slug", "!=", "why-choose-rent-a-car")->exists() ? BlogCategory::where("slug", "!=", "why-choose-rent-a-car")->first()->blogs()->paginate(3) : null;
         if (!empty($blogs)) {
             $blogs->reject(function ($blog) {
                 $blog->created = date("M j", strtotime($blog->created_at));
             });
         }
         return view('home', [
-            "truckCategories" => TruckCategory::with("truckWeightCategory")->latest()->take(12)->get(),
+            "carCategories" => CarCategory::with("carWeightCategory")->latest()->take(12)->get(),
             "sliders" => HeaderSlider::where("category", "home")->orderBy("position")->get(),
             "clients" => Client::latest()->take(12)->get(),
             "whyBlogs" => $whyBlogs,

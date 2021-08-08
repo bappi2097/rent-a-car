@@ -1,35 +1,35 @@
 @extends('company.layout.master')
 @section('content')
     <div class="bg-white p-20 col-md-10 m-t-30">
-        <a href="{{ route('company.truck.index') }}" class="btn btn-outline-primary">Back</a>
+        <a href="{{ route('company.car.index') }}" class="btn btn-outline-primary">Back</a>
         <div class="bg-white p-20 col-12 m-t-30">
-            <form action="{{ route('company.truck.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('company.car.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <fieldset>
-                    <legend class="m-b-15">Add Truck</legend>
+                    <legend class="m-b-15">Add Car</legend>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="truck_no">Truck No</label>
-                                <input type="text" class="form-control" name="truck_no" id="truck_no" placeholder="">
-                                @error('truck_no')
+                                <label for="car_no">Car No</label>
+                                <input type="text" class="form-control" name="car_no" id="car_no" placeholder="">
+                                @error('car_no')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="brand">Truck Category</label>
-                                <select name="truck_category_id" id="truck_category_id" class="form-control selectpicker"
+                                <label for="brand">Car Category</label>
+                                <select name="car_category_id" id="car_category_id" class="form-control selectpicker"
                                     style="border: 1px solid #ced4da; border-radius: 0.25rem;" data-live-search="true">
                                     <option selected>Choose Category</option>
-                                    @foreach ($truckCategories as $item)
+                                    @foreach ($carCategories as $item)
                                         <option value="{{ $item->id }}">
-                                            {{ $item->TruckSizeCategory->size . ' Feet, ' . $item->TruckWeightCategory->weight . ' Ton, ' . $item->TruckModelCategory->TruckBrandCategory->name . '-' . $item->TruckModelCategory->model }}
+                                            {{ $item->CarSizeCategory->size . ' Feet, ' . $item->CarWeightCategory->weight . ' Ton, ' . $item->CarModelCategory->CarBrandCategory->name . '-' . $item->CarModelCategory->model }}
                                         </option>
                                     @endforeach
                                 </select>
-                                @error('truck_category_id')
+                                @error('car_category_id')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <img id="user-image" src="{{ asset('images/truck-placeholder.png') }}" alt="your image"
+                            <img id="user-image" src="{{ asset('images/car-placeholder.png') }}" alt="your image"
                                 width="118" height="122" /><br>
                             <input type='file' name="image" id="user-user-btn" style="display: none;"
                                 onchange="readURL(this);" accept="user/*" />
@@ -93,6 +93,5 @@
         $(function() {
             $('.selectpicker').selectpicker();
         });
-
     </script>
 @endpush

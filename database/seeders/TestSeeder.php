@@ -17,9 +17,9 @@ class TestSeeder extends Seeder
     public function run()
     {
         // User::insert([
-        //     "name" => "Bappi Saha",
-        //     "email" => "bappi2097@gmail.com",
-        //     "mobile_no" => "01726257333",
+        //     "name" => "Nabil",
+        //     "email" => "nabil2097@gmail.com",
+        //     "mobile_no" => "01700000000",
         //     "password" => bcrypt("password"),
         // ]);
         // $customers = new CustomerDetail();

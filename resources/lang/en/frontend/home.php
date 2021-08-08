@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'why-choose-traincu' => 'Why Choose Traincu?',
+    'why-choose-rent-a-car' => 'Why Choose Rent A Car?',
     'types-of-vehicle' => 'Types of Vehicle',
     'our-clients' => 'Our Clients',
     'testimonials' => 'Testimonials',

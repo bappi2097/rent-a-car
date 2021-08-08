@@ -15,14 +15,14 @@ class TripController extends Controller
     public function indexCurrent()
     {
         return view("user.pages.trip.current-trip", [
-            "trips" => Trip::where("customer_id", auth()->user()->customer->id)->whereNotIn("status",  [2, 3])->with(["truckCategory", "product", "tripBids"])->latest()->get()
+            "trips" => Trip::where("customer_id", auth()->user()->customer->id)->whereNotIn("status",  [2, 3])->with(["carCategory", "product", "tripBids"])->latest()->get()
         ]);
     }
 
     public function indexHistory()
     {
         return view("user.pages.trip.history-trip", [
-            "trips" => Trip::where("customer_id", auth()->user()->customer->id)->whereIn("status",  [2, 3])->with(["truckCategory", "product", "tripBids"])->latest()->get()
+            "trips" => Trip::where("customer_id", auth()->user()->customer->id)->whereIn("status",  [2, 3])->with(["carCategory", "product", "tripBids"])->latest()->get()
         ]);
     }
 
@@ -38,7 +38,7 @@ class TripController extends Controller
             "load_location" => "required|string",
             "unload_location" => "required|string",
             "load_time" => "required",
-            "truck_category_id" => "required",
+            "car_category_id" => "required",
             "products_description" => "required|string",
             "product_types" => "nullable|array",
             "worker" => "nullable",
@@ -62,7 +62,7 @@ class TripController extends Controller
             $tripData = [
                 "product_id" => $product->id,
                 "customer_id" => auth()->user()->customer->id,
-                "truck_category_id" => $request->truck_category_id,
+                "car_category_id" => $request->car_category_id,
                 "load_location" => $request->load_location,
                 "unload_location" => $request->unload_location,
                 "load_time" => $request->load_time,

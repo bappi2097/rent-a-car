@@ -13,7 +13,7 @@ return [
     |
     */
     'home' => "الرئيسية",
-    'truck-operator' => "مشغل شاحنة",
+    'car-operator' => "مشغل شاحنة",
     'blog' => "مقالات",
     'contact-us' => "",
     'login' => "اتصل بنا",

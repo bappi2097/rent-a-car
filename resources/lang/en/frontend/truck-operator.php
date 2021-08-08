@@ -12,12 +12,12 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'why-register-traincu' => "Why Register at Traincu?",
+    'why-register-rent-a-car' => "Why Register at Rent A Car?",
     'lucrative-fare' => "Lucrative Fare",
     'verified-shipper' => "Verified Shipper",
     'no-middleman' => "No Middleman",
     'customer-care' => "Customer Care Support",
-    "traincu-truck-operator" => "Traincu Registered Truck Operator",
-    "how-traincu-works" => "How Traincu Works?",
+    "rent-a-car-car-operator" => "Rent A Car Registered Car Operator",
+    "how-rent-a-car-works" => "How Rent A Car Works?",
 
 ];

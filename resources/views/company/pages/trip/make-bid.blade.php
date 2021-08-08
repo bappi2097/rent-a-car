@@ -18,10 +18,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <img class="img-fluid" width="100" src="{{ asset('images/truck.png') }}" alt="">
-                                <h6 class="text-weight-bold mt-2">{{ $trip->truckCategory->truckSizeCategory->size }} Feet
-                                    {{ $trip->truckCategory->truckWeightCategory->weight }} Ton
-                                    {{ $trip->truckCategory->truckCoveredCategory->name }}</h6>
+                                <img class="img-fluid" width="100" src="{{ asset('images/car.png') }}" alt="">
+                                <h6 class="text-weight-bold mt-2">{{ $trip->carCategory->carSizeCategory->size }} Feet
+                                    {{ $trip->carCategory->carWeightCategory->weight }} Ton
+                                    {{ $trip->carCategory->carCoveredCategory->name }}</h6>
                                 <p class="text-muted">{{ date('F j, Y, g:i a', strtotime($trip->load_time)) }}</p>
                                 <div>
                                     <span class="d-block">
@@ -67,7 +67,7 @@
                             @endforeach
                         </div>
                     </div>
-                    @if (auth()->user()->company->hasValidTruck())
+                    @if (auth()->user()->company->hasValidCar())
                         @if (!$trip->hasBid(auth()->user()->company))
                             <div>
                                 <form action="{{ route('company.bid.create', $trip->id) }}" method="POST">
@@ -82,14 +82,14 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="truck_id">Truck</label>
-                                                <select name="truck_id" id="truck_id" class="form-control selectpicker"
+                                                <label for="car_id">Car</label>
+                                                <select name="car_id" id="car_id" class="form-control selectpicker"
                                                     style="border: 1px solid #ced4da; border-radius: 0.25rem;"
                                                     data-live-search="true">
-                                                    @foreach (auth()->user()->company->validTrucks()
-        as $truck)
-                                                        <option value="{{ $truck->id }}">
-                                                            {{ $truck->truck_no . ' (' . $truck->truckCategory->truckModelCategory->model . ')' }}
+                                                    @foreach (auth()->user()->company->validCars()
+        as $car)
+                                                        <option value="{{ $car->id }}">
+                                                            {{ $car->car_no . ' (' . $car->carCategory->carModelCategory->model . ')' }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -110,8 +110,8 @@
                                         @endphp
                                         <h5>My BID</h5>
                                         <p>Amount: {{ $bid->amount }}</p>
-                                        <p> Truck:
-                                            {{ $bid->truck->truck_no . ' (' . $bid->truck->truckCategory->truckModelCategory->model . ')' }}
+                                        <p> Car:
+                                            {{ $bid->car->car_no . ' (' . $bid->car->carCategory->carModelCategory->model . ')' }}
                                         </p>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@
                             @endif
                         @endif
                     @else
-                        <h4 class="text-danger text-uppercase">You Don't Have any valid Truck</h4>
+                        <h4 class="text-danger text-uppercase">You Don't Have any valid Car</h4>
                     @endif
                 </div>
             </div>
@@ -139,8 +139,8 @@
         @if ($trip->isApprovedBid())
             @php
                 $tripBid = $trip->approvedBid();
-                $tripCompany = $tripBid->truck->company->first();
-                $truckCat = $tripBid->truck->truckCategory;
+                $tripCompany = $tripBid->car->company->first();
+                $carCat = $tripBid->car->carCategory;
             @endphp
             <div class="row">
                 <div class="col-md-12">
@@ -160,9 +160,9 @@
                                                         {{ $tripCompany->user->name }}
                                                     </h5>
                                                     <p class="text-muted">
-                                                        {{ $truckCat->truckModelCategory->model . ' ' . $truckCat->truckModelCategory->truckBrandCategory->name }}
+                                                        {{ $carCat->carModelCategory->model . ' ' . $carCat->carModelCategory->carBrandCategory->name }}
                                                         <br>
-                                                        {{ $truckCat->truckSizeCategory->size . ' Feet ' . $truckCat->truckWeightCategory->weight . ' Ton ' . $truckCat->truckCoveredCategory->name }}
+                                                        {{ $carCat->carSizeCategory->size . ' Feet ' . $carCat->carWeightCategory->weight . ' Ton ' . $carCat->carCoveredCategory->name }}
                                                         <br>
                                                         {{ $tripBid->amount . ' TK' }}
                                                     </p>
@@ -184,8 +184,8 @@
         @else
             @foreach ($trip->tripBids as $tripBid)
                 @php
-                    $tripCompany = $tripBid->truck->company->first();
-                    $truckCat = $tripBid->truck->truckCategory;
+                    $tripCompany = $tripBid->car->company->first();
+                    $carCat = $tripBid->car->carCategory;
                 @endphp
                 <div class="row">
                     <div class="col-md-12">
@@ -205,9 +205,9 @@
                                                             {{ $tripCompany->user->name }}
                                                         </h5>
                                                         <p class="text-muted">
-                                                            {{ $truckCat->truckModelCategory->model . ' ' . $truckCat->truckModelCategory->truckBrandCategory->name }}
+                                                            {{ $carCat->carModelCategory->model . ' ' . $carCat->carModelCategory->carBrandCategory->name }}
                                                             <br>
-                                                            {{ $truckCat->truckSizeCategory->size . ' Feet ' . $truckCat->truckWeightCategory->weight . ' Ton ' . $truckCat->truckCoveredCategory->name }}
+                                                            {{ $carCat->carSizeCategory->size . ' Feet ' . $carCat->carWeightCategory->weight . ' Ton ' . $carCat->carCoveredCategory->name }}
                                                             <br>
                                                             {{ $tripBid->amount . ' TK' }}
                                                         </p>
@@ -242,6 +242,5 @@
         $(function() {
             $('.selectpicker').selectpicker();
         });
-
     </script>
 @endpush

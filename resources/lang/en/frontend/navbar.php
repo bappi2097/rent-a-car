@@ -13,7 +13,7 @@ return [
     |
     */
     'home' => "HOME",
-    'truck-operator' => "TRUCK OPERATOR",
+    'car-operator' => "Car OPERATOR",
     'blog' => "BLOG",
     'contact-us' => "CONTACT US",
     'login' => "LOGIN",

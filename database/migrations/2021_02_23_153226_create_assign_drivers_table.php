@@ -16,7 +16,7 @@ class CreateAssignDriversTable extends Migration
         Schema::create('assign_drivers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('driver_id')->constrained("driver_details")->onDelete("cascade");
-            $table->foreignId('truck_id')->constrained("trucks")->onDelete("cascade");
+            $table->foreignId('car_id')->constrained("cars")->onDelete("cascade");
             $table->softDeletes();
             $table->timestamps();
         });

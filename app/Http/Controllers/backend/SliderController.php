@@ -42,7 +42,7 @@ class SliderController extends Controller
     {
         $this->validate($request, [
             "image" => "file|required",
-            "category" => "required|string|in:home,truck-operator",
+            "category" => "required|string|in:home,car-operator",
             "position" => "required|numeric",
         ]);
         $data = [
@@ -94,7 +94,7 @@ class SliderController extends Controller
     {
         $this->validate($request, [
             "image" => "file|nullable",
-            "category" => "required|string|in:home,truck-operator",
+            "category" => "required|string|in:home,car-operator",
             "position" => "required|numeric",
         ]);
         $data = [

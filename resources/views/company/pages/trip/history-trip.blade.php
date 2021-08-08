@@ -24,10 +24,10 @@
                                 <span
                                     class="badge badge-{{ tripStatus($trip->trip_status)[1] }} text-uppercase p-2">{{ tripStatus($trip->trip_status)[0] }}</span>
                                 <h6 class="text-weight-bold mt-2">
-                                    {{ $trip->truck->truckCategory->truckSizeCategory->size }}
+                                    {{ $trip->car->carCategory->carSizeCategory->size }}
                                     Feet
-                                    {{ $trip->truck->truckCategory->truckWeightCategory->weight }} Ton
-                                    {{ $trip->truck->truckCategory->truckCoveredCategory->name }}</h6>
+                                    {{ $trip->car->carCategory->carWeightCategory->weight }} Ton
+                                    {{ $trip->car->carCategory->carCoveredCategory->name }}</h6>
                                 <p class="text-muted">{{ date('F j, Y, g:i a', strtotime($trip->load_time)) }}</p>
                                 <div>
                                     <span class="d-block">

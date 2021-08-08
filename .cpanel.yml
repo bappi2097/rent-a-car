@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/traincu/beta.traincu.com
+    - export DEPLOYPATH=/home/rent-a-car/beta.rent-a-car.com
     - /bin/cp public/index.php $DEPLOYPATH
     - /bin/cp public/.htaccess $DEPLOYPATH
     - /bin/cp -R * $DEPLOYPATH

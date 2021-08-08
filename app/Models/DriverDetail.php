@@ -9,7 +9,7 @@ class DriverDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "user_id", "uuid", "address", "image", "nid", "license", "truck_id"
+        "user_id", "uuid", "address", "image", "nid", "license", "car_id"
     ];
 
     public function user()
@@ -17,9 +17,9 @@ class DriverDetail extends Model
         return $this->belongsTo(User::class, "user_id");
     }
 
-    public function truck()
+    public function car()
     {
-        return $this->belongsTo(Truck::class, "truck_id");
+        return $this->belongsTo(Car::class, "car_id");
     }
     /**
      * Get the user's testimonial.
@@ -33,19 +33,19 @@ class DriverDetail extends Model
     {
         return $this->hasOne(DriverBalanceDetail::class, "driver_id");
     }
-    public function validTruck()
+    public function validCar()
     {
-        return $this->hasValidTruck() ? $this->truck : null;
+        return $this->hasValidCar() ? $this->car : null;
     }
 
-    public function hasTruck()
+    public function hasCar()
     {
-        return !empty($this->truck);
+        return !empty($this->car);
     }
 
-    public function hasValidTruck()
+    public function hasValidCar()
     {
-        return $this->hasTruck() ? $this->truck->is_valid == 1 : false;
+        return $this->hasCar() ? $this->car->is_valid == 1 : false;
     }
 
     public function tripBids()

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
-use App\Models\TruckBrandCategory;
+use App\Models\CarBrandCategory;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 
-class TruckBrandCategoryController extends Controller
+class CarBrandCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class TruckBrandCategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.truck-brand.index', [
-            "truckBrandCategories" => TruckBrandCategory::paginate(10)
+        return view('admin.pages.car-brand.index', [
+            "carBrandCategories" => CarBrandCategory::paginate(10)
         ]);
     }
 
@@ -28,7 +28,7 @@ class TruckBrandCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.truck-brand.create');
+        return view('admin.pages.car-brand.create');
     }
 
     /**
@@ -47,10 +47,10 @@ class TruckBrandCategoryController extends Controller
             "name" => $request->name,
         ];
 
-        $truckBrandCategory = new TruckBrandCategory($data);
+        $carBrandCategory = new CarBrandCategory($data);
 
-        if ($truckBrandCategory->save()) {
-            Toastr::success("Truck Brand Added Successfully", "Success");
+        if ($carBrandCategory->save()) {
+            Toastr::success("Car Brand Added Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }
@@ -60,10 +60,10 @@ class TruckBrandCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TruckBrandCategory  $truckBrandCategory
+     * @param  \App\Models\CarBrandCategory  $carBrandCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(TruckBrandCategory $truckBrandCategory)
+    public function show(CarBrandCategory $carBrandCategory)
     {
         //
     }
@@ -71,13 +71,13 @@ class TruckBrandCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TruckBrandCategory  $truckBrandCategory
+     * @param  \App\Models\CarBrandCategory  $carBrandCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(TruckBrandCategory $truckBrandCategory)
+    public function edit(CarBrandCategory $carBrandCategory)
     {
-        return view("admin.pages.truck-brand.edit", [
-            "truckBrandCategory" => $truckBrandCategory
+        return view("admin.pages.car-brand.edit", [
+            "carBrandCategory" => $carBrandCategory
         ]);
     }
 
@@ -85,10 +85,10 @@ class TruckBrandCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TruckBrandCategory  $truckBrandCategory
+     * @param  \App\Models\CarBrandCategory  $carBrandCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TruckBrandCategory $truckBrandCategory)
+    public function update(Request $request, CarBrandCategory $carBrandCategory)
     {
         $this->validate($request, [
             'name' => "required|string|max:100",
@@ -97,10 +97,10 @@ class TruckBrandCategoryController extends Controller
         $data = [
             "name" => $request->name,
         ];
-        $truckBrandCategory->fill($data);
+        $carBrandCategory->fill($data);
 
-        if ($truckBrandCategory->save()) {
-            Toastr::success("Truck Brand Updated Successfully", "Success");
+        if ($carBrandCategory->save()) {
+            Toastr::success("Car Brand Updated Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }
@@ -110,13 +110,13 @@ class TruckBrandCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TruckBrandCategory  $truckBrandCategory
+     * @param  \App\Models\CarBrandCategory  $carBrandCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TruckBrandCategory $truckBrandCategory)
+    public function destroy(CarBrandCategory $carBrandCategory)
     {
-        if ($truckBrandCategory->delete()) {
-            Toastr::success("Truck Brand Deleted Successfully", "Success");
+        if ($carBrandCategory->delete()) {
+            Toastr::success("Car Brand Deleted Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
         }

@@ -23,9 +23,9 @@ class CompanyDetail extends Model
         return $this->belongsTo(CompanyType::class, "company_type_id");
     }
 
-    public function trucks()
+    public function cars()
     {
-        return $this->belongsToMany(Truck::class);
+        return $this->belongsToMany(Car::class);
     }
 
     public function balanceDetail()
@@ -33,19 +33,19 @@ class CompanyDetail extends Model
         return $this->hasOne(BalanceDetail::class, "company_id");
     }
 
-    public function validTrucks()
+    public function validCars()
     {
-        return $this->trucks->where("is_valid", 1);
+        return $this->cars->where("is_valid", 1);
     }
 
-    public function hasTruck()
+    public function hasCar()
     {
-        return !$this->trucks->isEmpty();
+        return !$this->cars->isEmpty();
     }
 
-    public function hasValidTruck()
+    public function hasValidCar()
     {
-        return !$this->validTrucks()->isEmpty();
+        return !$this->validCars()->isEmpty();
     }
 
     /**
