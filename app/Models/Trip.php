@@ -12,7 +12,6 @@ class Trip extends Model
     protected $fillable = [
         "customer_id",
         "car_category_id",
-        "product_id",
         "load_location",
         "unload_location",
         "load_time",

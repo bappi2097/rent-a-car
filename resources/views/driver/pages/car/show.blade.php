@@ -20,7 +20,7 @@
                 <div class="col-md-4 offset-md-4 mt-2">
                     <p>Car No: {{ $car->car_no }}</p>
                     <p>
-                        {{ $car->carCategory->CarSizeCategory->size . ' Feet, ' . $car->carCategory->CarWeightCategory->weight . ' Ton, ' . $car->carCategory->CarModelCategory->CarBrandCategory->name . '-' . $car->carCategory->CarModelCategory->model }}
+                        {{ $car->carCategory->CarModelCategory->CarBrandCategory->name . '-' . $car->carCategory->CarModelCategory->model }}
                     </p>
                 </div>
             </div>

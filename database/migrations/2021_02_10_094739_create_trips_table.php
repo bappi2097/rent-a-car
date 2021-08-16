@@ -17,7 +17,6 @@ class CreateTripsTable extends Migration
             $table->id();
             $table->foreignId("customer_id")->constrained("customer_details")->onDelete("cascade");
             $table->foreignId("car_category_id")->constrained("car_categories")->onDelete("cascade");
-            $table->foreignId("product_id")->constrained("products")->onDelete("cascade");
             $table->text("load_location");
             $table->text("unload_location");
             $table->timestamp("load_time");

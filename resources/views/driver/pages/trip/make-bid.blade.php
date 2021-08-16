@@ -19,9 +19,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <img class="img-fluid" width="100" src="{{ asset('images/car.png') }}" alt="">
-                                <h6 class="text-weight-bold mt-2">{{ $trip->carCategory->carSizeCategory->size }} Feet
-                                    {{ $trip->carCategory->carWeightCategory->weight }} Ton
-                                    {{ $trip->carCategory->carCoveredCategory->name }}</h6>
+                                <h6 class="text-weight-bold mt-2"></h6>
                                 <p class="text-muted">{{ date('F j, Y, g:i a', strtotime($trip->load_time)) }}</p>
                                 <div>
                                     <span class="d-block">
@@ -55,16 +53,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card px-5 py-2 mt-3">
-                            <span>{{ $trip->product->description }}</span>
-                        </div>
-                        <div class="card px-5 py-2 mt-3">
-                            @foreach ($trip->product->productValues as $item)
-                                <span>
-                                    {{ $item->productTypes->value }}
-                                </span>
-                            @endforeach
-                        </div>
+
                     </div>
                     @if (auth()->user()->driver->hasValidCar())
                         @if (!$trip->hasBidDriver(auth()->user()->driver))
@@ -136,11 +125,7 @@
         @if ($trip->isApprovedBid() && !empty($trip->approvedBid()->car->driver))
             @php
                 $tripBid = $trip->approvedBid();
-                if ($tripBid->car->isCompany()) {
-                    $tripUser = !empty($trip->approvedBid()->car->driver) ? $tripBid->car->driver->first() : null;
-                } else {
-                    $tripUser = $tripBid->car->driver;
-                }
+                $tripUser = $tripBid->car->driver;
                 $carCat = $tripBid->car->carCategory;
             @endphp
             <div class="row">
@@ -163,7 +148,6 @@
                                                     <p class="text-muted">
                                                         {{ $carCat->carModelCategory->model . ' ' . $carCat->carModelCategory->carBrandCategory->name }}
                                                         <br>
-                                                        {{ $carCat->carSizeCategory->size . ' Feet ' . $carCat->carWeightCategory->weight . ' Ton ' . $carCat->carCoveredCategory->name }}
                                                         <br>
                                                         {{ $tripBid->amount . ' TK' }}
                                                     </p>
@@ -182,64 +166,6 @@
                     </div>
                 </div>
             </div>
-        @else
-            @foreach ($trip->tripBids as $tripBid)
-                @php
-                    if ($tripBid->car->isCompany()) {
-                        $tripUser = !empty($trip->approvedBid()->car->company) ? $tripBid->car->company->first() : null;
-                    } else {
-                        $tripUser = $tripBid->car->driver;
-                    }
-                    $carCat = $tripBid->car->carCategory;
-                @endphp
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card rounded px-5 py-3">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2 col-sm-12">
-                                        <img style="width: 100px; height:100px;" class="rounded"
-                                            src="{{ asset($tripUser->image) }}" alt="">
-                                    </div>
-                                    <div class="col-md-10 col-sm-12">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="d-flex align-items-center">
-                                                    <div>
-                                                        <h5>
-                                                            {{ $tripUser->user->name }}
-                                                        </h5>
-                                                        <p class="text-muted">
-                                                            {{ $carCat->carModelCategory->model . ' ' . $carCat->carModelCategory->carBrandCategory->name }}
-                                                            <br>
-                                                            {{ $carCat->carSizeCategory->size . ' Feet ' . $carCat->carWeightCategory->weight . ' Ton ' . $carCat->carCoveredCategory->name }}
-                                                            <br>
-                                                            {{ $tripBid->amount . ' TK' }}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 d-flex">
-                                                @if ($tripBid->isApproved())
-                                                    <div>
-                                                        <span class="badge badge-success">Bid Apporved</span>
-                                                    </div>
-                                                @endif
-
-                                                @if ($tripBid->isDeclined())
-                                                    <div>
-                                                        <span class="badge badge-danger">Bid Declined</span>
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
         @endif
     </div>
 @endsection

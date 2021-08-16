@@ -175,11 +175,7 @@ class CarController extends Controller
 
     public function user(Car $car)
     {
-        if ($car->isCompany()) {
-            return redirect()->route("admin.user.company.show", $car->company->first()->user_id);
-        } else {
-            return redirect()->route("admin.user.driver.show", $car->driver->user_id);
-        }
+        return redirect()->route("admin.user.driver.show", $car->driver->user_id);
     }
 
 
@@ -192,11 +188,7 @@ class CarController extends Controller
     public function accept(Request $request, Car $car)
     {
         if ($car->update(["is_valid" => 1])) {
-            if ($car->isCompany()) {
-                $car->user->setNotification($car->id, "Your Car Validation Complete : Accepted", route("company.car.index", "en"));
-            } else {
-                $car->user->setNotification($car->id, "Your Car Validation Complete : Accepted", route("driver.car.show", "en"));
-            }
+            $car->user->setNotification($car->id, "Your Car Validation Complete : Accepted", route("driver.car.show", "en"));
             Toastr::success("Car is valid now", "Success");
         } else {
             Toastr::error("Something Went Wrong", "Error");
@@ -213,11 +205,7 @@ class CarController extends Controller
     public function reject(Request $request, Car $car)
     {
         if ($car->update(["is_valid" => 2])) {
-            if ($car->isCompany()) {
-                $car->user->setNotification($car->id, "Your Car Validation Complete : Rejected", route("company.car.index", "en"));
-            } else {
-                $car->user->setNotification($car->id, "Your Car Validation Complete : Rejected", route("driver.car.show", "en"));
-            }
+            $car->user->setNotification($car->id, "Your Car Validation Complete : Rejected", route("driver.car.show", "en"));
             Toastr::success("Car is rejected now", "Success");
         } else {
             Toastr::error("Something Went Wrong", "Error");

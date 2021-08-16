@@ -14,7 +14,7 @@
                     <img class="card-img-top" src="{{ asset($item->image ?: 'images/car.png') }}"
                         alt="Card image cap" />
                     <div class="card-body">
-                        <h3>{{ $item->carWeightCategory->weight }} Ton Car</h3>
+                        <h3>Model {{ $item->carModelCategory->model }}</h3>
                         <p class="card-text">
                             {{ $item->description }}
                         </p>

@@ -18,39 +18,24 @@
                                 class="badge badge-{{ tripStatus($trip->status)[1] }} text-uppercase p-2">{{ tripStatus($trip->status)[0] }}</span>
                         </div>
                         <img class="img-fluid" width="100" src="{{ asset('images/car.png') }}" alt="">
-                        <h6 class="text-weight-bold mt-2">{{ $trip->carCategory->carSizeCategory->size }} Feet
-                            {{ $trip->carCategory->carWeightCategory->weight }} Ton
-                            {{ $trip->carCategory->carCoveredCategory->name }}</h6>
-                        <p class="text-muted">{{ date('F j, Y, g:i a', strtotime($trip->load_time)) }}</p>
-                        <div>
-                            <span class="d-block">
-                                <span class="d-flex align-items-center">
-                                    <i class="icon-circle-arrow-up text-primary"></i>
-                                    <h5 class="m-0 ml-2">{{ $trip->load_location }}</h5>
-                                </span>
-                            </span>
-                            <span class="seperate-icon"></span>
-                            <span class="d-block">
-                                <span class="d-flex align-items-center">
-                                    <i class="icon-circle-arrow-down text-success"></i>
-                                    <h5 class="m-0 ml-2">{{ $trip->unload_location }}</h5>
-                                </span>
-                            </span>
-                        </div>
-                        <div class="card px-5 py-2 mt-3">
-                            <span>Description: {{ $trip->product->description }}</span>
-                        </div>
-                        <div class="card px-5 py-2 mt-3">
-                            @if (!$trip->product->productValues->isEmpty())
-                                @foreach ($trip->product->productValues as $item)
-                                    <span>
-                                        {{ $item->productTypes->value }}
+                        <h6 class="text-weight-bold mt-2">
+                            <p class="text-muted">{{ date('F j, Y, g:i a', strtotime($trip->load_time)) }}</p>
+                            <div>
+                                <span class="d-block">
+                                    <span class="d-flex align-items-center">
+                                        <i class="icon-circle-arrow-up text-primary"></i>
+                                        <h5 class="m-0 ml-2">{{ $trip->load_location }}</h5>
                                     </span>
-                                @endforeach
-                            @else
-                                <span class="text-danger">No product type selected</span>
-                            @endif
-                        </div>
+                                </span>
+                                <span class="seperate-icon"></span>
+                                <span class="d-block">
+                                    <span class="d-flex align-items-center">
+                                        <i class="icon-circle-arrow-down text-success"></i>
+                                        <h5 class="m-0 ml-2">{{ $trip->unload_location }}</h5>
+                                    </span>
+                                </span>
+                            </div>
+                        </h6>
                     </div>
                     @if (!$trip->isCanceled() && !$trip->isApprovedBid())
                         <div class="d-flex justify-content-center">
@@ -71,11 +56,7 @@
         @if ($trip->isApprovedBid())
             @php
                 $tripBid = $trip->approvedBid();
-                if ($tripBid->car->isCompany()) {
-                    $tripUser = $tripBid->car->company->first();
-                } else {
-                    $tripUser = $tripBid->car->driver;
-                }
+                $tripUser = $tripBid->car->driver;
                 $carCat = $tripBid->car->carCategory;
             @endphp
             <div class="row">
@@ -98,8 +79,6 @@
                                                     <p class="text-muted">
                                                         {{ $carCat->carModelCategory->model . ' ' . $carCat->carModelCategory->carBrandCategory->name }}
                                                         <br>
-                                                        {{ $carCat->carSizeCategory->size . ' Feet ' . $carCat->carWeightCategory->weight . ' Ton ' . $carCat->carCoveredCategory->name }}
-                                                        <br>
                                                         {{ $tripBid->amount . ' TK' }}
                                                     </p>
                                                 </div>
@@ -120,11 +99,7 @@
         @else
             @foreach ($trip->tripBids as $tripBid)
                 @php
-                    if ($tripBid->car->isCompany()) {
-                        $tripUser = $tripBid->car->company->first();
-                    } else {
-                        $tripUser = $tripBid->car->driver;
-                    }
+                    $tripUser = $tripBid->car->driver;
                     $carCat = $tripBid->car->carCategory;
                 @endphp
                 <div class="row">
@@ -146,8 +121,6 @@
                                                         </h5>
                                                         <p class="text-muted">
                                                             {{ $carCat->carModelCategory->model . ' ' . $carCat->carModelCategory->carBrandCategory->name }}
-                                                            <br>
-                                                            {{ $carCat->carSizeCategory->size . ' Feet ' . $carCat->carWeightCategory->weight . ' Ton ' . $carCat->carCoveredCategory->name }}
                                                             <br>
                                                             {{ $tripBid->amount . ' TK' }}
                                                         </p>

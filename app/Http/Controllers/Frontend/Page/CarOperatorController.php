@@ -12,7 +12,7 @@ class CarOperatorController extends Controller
     public function index()
     {
         return view('car-operator', [
-            "carCategories" => CarCategory::with("carWeightCategory")->latest()->take(12)->get(),
+            "carCategories" => CarCategory::with("carModelCategory")->latest()->take(12)->get(),
             "sliders" => HeaderSlider::where("category", "car-operator")->get()
         ]);
     }

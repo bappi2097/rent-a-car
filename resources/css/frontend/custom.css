@@ -11,13 +11,13 @@
     --indigo-900: #312e81;
 }
 nav {
-    background-image: linear-gradient(
-        to right bottom,
-        #ccbcfb,
-        #c0a8fd,
-        #b593fe,
-        #ab7dfe,
-        #a166fd
+    background: linear-gradient(
+        to left top,
+        #6cff5e,
+        #67fd80,
+        #58fc9c,
+        #5bffad,
+        #4fff9e
     );
 }
 .active {

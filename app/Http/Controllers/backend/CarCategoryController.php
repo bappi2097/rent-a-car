@@ -36,10 +36,6 @@ class CarCategoryController extends Controller
     {
         return view('admin.pages.car-category.create', [
             "carModelCategories" => CarModelCategory::all(),
-            "carCoveredCategories" => CarCoveredCategory::all(),
-            "carSizeCategories" => CarSizeCategory::all(),
-            "carWeightCategories" => CarWeightCategory::all(),
-            "carTripCategories" => CarTripCategory::all(),
         ]);
     }
 
@@ -54,10 +50,6 @@ class CarCategoryController extends Controller
         $this->validate($request, [
             'description' => "nullable|string",
             'car_model_category_id' => "exists:car_model_categories,id",
-            'car_weight_category_id' => "exists:car_weight_categories,id",
-            'car_size_category_id' => "exists:car_size_categories,id",
-            'car_covered_category_id' => "exists:car_covered_categories,id",
-            'car_trip_category_id' => "required|array",
             'image' => "required|file",
         ]);
         if ($request->hasFile("image")) {
@@ -66,16 +58,12 @@ class CarCategoryController extends Controller
         $data = [
             "description" => $request->description ?: "",
             "car_model_category_id" => $request->car_model_category_id,
-            "car_weight_category_id" => $request->car_weight_category_id,
-            "car_size_category_id" => $request->car_size_category_id,
-            "car_covered_category_id" => $request->car_covered_category_id,
             "image" => $image,
         ];
 
         $carCategory = new CarCategory($data);
 
         if ($carCategory->save()) {
-            $carCategory->carTripCategories()->sync($request->car_trip_category_id);
             Toastr::success("Car Added Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");
@@ -105,10 +93,6 @@ class CarCategoryController extends Controller
         return view('admin.pages.car-category.edit', [
             "carCategory" => $carCategory,
             "carModelCategories" => CarModelCategory::all(),
-            "carCoveredCategories" => CarCoveredCategory::all(),
-            "carSizeCategories" => CarSizeCategory::all(),
-            "carTripCategories" => CarTripCategory::all(),
-            "carWeightCategories" => CarWeightCategory::all(),
         ]);
     }
 
@@ -124,19 +108,12 @@ class CarCategoryController extends Controller
         $this->validate($request, [
             'description' => "nullable|string",
             'car_model_category_id' => "exists:car_model_categories,id",
-            'car_weight_category_id' => "exists:car_weight_categories,id",
-            'car_size_category_id' => "exists:car_size_categories,id",
-            'car_covered_category_id' => "exists:car_covered_categories,id",
-            'car_trip_category_id' => "required|array",
             'image' => "nullable|file",
         ]);
 
         $data = [
             "description" => $request->description ?: "",
             "car_model_category_id" => $request->car_model_category_id,
-            "car_weight_category_id" => $request->car_weight_category_id,
-            "car_size_category_id" => $request->car_size_category_id,
-            "car_covered_category_id" => $request->car_covered_category_id,
         ];
 
         if ($request->hasFile('image')) {
@@ -148,7 +125,6 @@ class CarCategoryController extends Controller
 
         $carCategory->fill($data);
         if ($carCategory->save()) {
-            $carCategory->carTripCategories()->sync($request->car_trip_category_id);
             Toastr::success("Car Updated Successfully", "Success");
         } else {
             Toastr::error("Something Went Wrong!", "Error");

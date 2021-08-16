@@ -17,8 +17,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('user.pages.dashboard', [
-            "categories" => CarCategory::with(['carModelCategory', 'carCoveredCategory', 'carSizeCategory', 'carWeightCategory', 'carTripCategories'])->get(),
-            "productTypes" => ProductType::all()
+            "categories" => CarCategory::with(['carModelCategory'])->get()
         ]);
     }
 

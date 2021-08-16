@@ -12,12 +12,11 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'why-register-rent-a-car' => "Why Register at Rent A Car?",
-    'lucrative-fare' => "Lucrative Fare",
-    'verified-shipper' => "Verified Shipper",
-    'no-middleman' => "No Middleman",
-    'customer-care' => "Customer Care Support",
-    "rent-a-car-car-operator" => "Rent A Car Registered Car Operator",
-    "how-rent-a-car-works" => "How Rent A Car Works?",
-
+    'why-register-rent-a-car' => " دعم خدمة العملاء",
+    'lucrative-fare' => "أسعار تناسب احتياجاتك",
+    'verified-shipper' => "سائقين موثوقين ",
+    'no-middleman' => "لا يوجد وسيط",
+    'customer-care' => "دعم خدمة العملاء",
+    "rent-a-car-operator" => "شائقي الشاحنة المسجلين بمنصة ترانكو",
+    "how-rent-a-car-works" => "كيف يعمل ترانكو؟",
 ];

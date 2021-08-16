@@ -12,26 +12,24 @@
                                     <div class="col-md-6">
                                         <span
                                             class="badge badge-{{ tripStatus($trip->status)[1] }} text-uppercase p-2">{{ tripStatus($trip->status)[0] }}</span>
-                                        <h6 class="text-weight-bold mt-2">{{ $trip->carCategory->carSizeCategory->size }}
-                                            Feet
-                                            {{ $trip->carCategory->carWeightCategory->weight }} Ton
-                                            {{ $trip->carCategory->carCoveredCategory->name }}</h6>
-                                        <p class="text-muted">{{ date('F j, Y, g:i a', strtotime($trip->load_time)) }}</p>
-                                        <div>
-                                            <span class="d-block">
-                                                <span class="d-flex align-items-center">
-                                                    <i class="icon-circle-arrow-up text-primary"></i>
-                                                    <h5 class="m-0 ml-2">{{ $trip->load_location }}</h5>
+                                        <h6 class="text-weight-bold mt-2">
+                                            <p class="text-muted">{{ date('F j, Y, g:i a', strtotime($trip->load_time)) }}
+                                            </p>
+                                            <div>
+                                                <span class="d-block">
+                                                    <span class="d-flex align-items-center">
+                                                        <i class="icon-circle-arrow-up text-primary"></i>
+                                                        <h5 class="m-0 ml-2">{{ $trip->load_location }}</h5>
+                                                    </span>
                                                 </span>
-                                            </span>
-                                            <span class="seperate-icon"></span>
-                                            <span class="d-block">
-                                                <span class="d-flex align-items-center">
-                                                    <i class="icon-circle-arrow-down text-success"></i>
-                                                    <h5 class="m-0 ml-2">{{ $trip->unload_location }}</h5>
+                                                <span class="seperate-icon"></span>
+                                                <span class="d-block">
+                                                    <span class="d-flex align-items-center">
+                                                        <i class="icon-circle-arrow-down text-success"></i>
+                                                        <h5 class="m-0 ml-2">{{ $trip->unload_location }}</h5>
+                                                    </span>
                                                 </span>
-                                            </span>
-                                        </div>
+                                            </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="bg-warning text-center float-right" style="width: 50px; height: 50px">

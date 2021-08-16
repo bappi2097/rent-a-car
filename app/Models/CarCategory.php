@@ -10,7 +10,7 @@ class CarCategory extends Model
     use HasFactory;
 
     protected $fillable = [
-        "car_weight_category_id", "car_size_category_id", "car_covered_category_id", "car_model_category_id", "description", "image",
+        "car_model_category_id", "description", "image",
     ];
 
     public function carModelCategory()

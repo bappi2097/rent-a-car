@@ -19,11 +19,7 @@ class Car extends Model
 
     public function user()
     {
-        if ($this->isCompany()) {
-            return $this->company->first()->user();
-        } elseif ($this->isDriver()) {
-            return $this->driver->user();
-        }
+        return $this->driver->user();
     }
 
     public function carCategory()

@@ -7,7 +7,6 @@
                     <tr>
                         <th>#</th>
                         <th>Car No</th>
-                        <th>User Type</th>
                         <th>Category</th>
                         <th>License</th>
                         <th>Image</th>
@@ -20,13 +19,8 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $car->car_no }}</td>
-                            @if ($car->isCompany())
-                                <td>Company</td>
-                            @else
-                                <td>Driver</td>
-                            @endif
                             <td>
-                                {{ $car->carCategory->CarSizeCategory->size . ' Feet, ' . $car->carCategory->CarWeightCategory->weight . ' Ton, ' . $car->carCategory->CarModelCategory->CarBrandCategory->name . '-' . $car->carCategory->CarModelCategory->model }}
+                                {{ $car->carCategory->CarModelCategory->CarBrandCategory->name . '-' . $car->carCategory->CarModelCategory->model }}
                             </td>
                             <td class="with-img">
                                 <img src="{{ asset($car->license) }}" class="img-rounded height-40">

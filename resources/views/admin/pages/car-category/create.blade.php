@@ -20,53 +20,6 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="weight">Weight</label>
-                    <select name="car_weight_category_id" id="weight" class="form-control">
-                        <option selected>Choose Weight</option>
-                        @foreach ($carWeightCategories as $item)
-                            <option value="{{ $item->id }}">{{ $item->weight }} Ton</option>
-                        @endforeach
-                    </select>
-                    @error('car_weight_category_id')
-                        <span>{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="size">Size</label>
-                    <select name="car_size_category_id" id="size" class="form-control">
-                        <option selected>Choose Size</option>
-                        @foreach ($carSizeCategories as $item)
-                            <option value="{{ $item->id }}">{{ $item->size }} Feet</option>
-                        @endforeach
-                    </select>
-                    @error('car_size_category_id')
-                        <span>{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="covered">Covered</label>
-                    <select name="car_covered_category_id" id="covered" class="form-control">
-                        <option selected>Choose Covered</option>
-                        @foreach ($carCoveredCategories as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('car_covered_category_id')
-                        <span>{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="trip">Trip</label>
-                    <select name="car_trip_category_id[]" id="trip" class="form-control">
-                        @foreach ($carTripCategories as $item)
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('car_trip_category_id')
-                        <span>{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="form-group">
                     <label for="description">Description (<span class="text-warning">Optional</span>)</label>
                     <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
                     @error('description')

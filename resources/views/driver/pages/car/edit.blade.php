@@ -22,7 +22,7 @@
                             <option selected>Choose Category</option>
                             @foreach ($carCategories as $item)
                                 <option value="{{ $item->id }}" {{ selected($item->id, $car->car_category_id) }}>
-                                    {{ $item->CarSizeCategory->size . ' Feet, ' . $item->CarWeightCategory->weight . ' Ton, ' . $item->CarModelCategory->CarBrandCategory->name . '-' . $item->CarModelCategory->model }}
+                                    {{ $item->CarModelCategory->CarBrandCategory->name . '-' . $item->CarModelCategory->model }}
                                 </option>
                             @endforeach
                         </select>

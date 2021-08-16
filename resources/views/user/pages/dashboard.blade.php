@@ -28,12 +28,12 @@
                         <div id="location-div" class="">
                             <h2 class="p-5 text-center">Set Location For Trip</h2>
                             <div class="form-group">
-                                <label for="load">Load Location</label>
+                                <label for="load">Arraival Location</label>
                                 <input class="form-control" type="text" name="load_location" id="load"
                                     placeholder="221B Baker Street" required>
                             </div>
                             <div class="form-group">
-                                <label for="unload">Unload Location</label>
+                                <label for="unload">Departure Location</label>
                                 <input class="form-control" type="text" name="unload_location" id="unload"
                                     placeholder="Albert House, 256-260 Old St, Old Street" required>
                             </div>
@@ -51,10 +51,9 @@
                                                 alt="">
                                         </div>
                                         <div class="col-md-8">
-                                            <h5 class="font-weight-bold">{{ $category->carSizeCategory->size }} Feet
-                                                {{ $category->carWeightCategory->weight }} Ton
-                                                ({{ $category->carCoveredCategory->name }})</h5>
-                                            <h6 class="font-weight-bold">Lorem ipsum dolor sit amet.</h6>
+                                            <h5 class="font-weight-bold">{{ $category->carModelCategory->model }}</h5>
+                                            <h6 class="font-weight-bold">
+                                                {{ $category->carModelCategory->carBrandCategory->name }}</h6>
                                         </div>
                                         <div class="col-md-2">
                                             <h5 class="font-weight-bold">BID</h5>
@@ -70,40 +69,15 @@
                             </div>
                         </div>
                         <div id="time-div" class="d-none">
-                            <h2 class="p-5 text-center">Load Time</h2>
+                            <h2 class="p-5 text-center">Arraival Time</h2>
                             <div class="form-group">
-                                <label for="load_time">Load TIme</label>
+                                <label for="load_time">Arraival TIme</label>
                                 <input class="form-control timepicker" type="datetime-local" name="load_time" id="load_time"
                                     required>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button class="btn btn-outline-indigo mt-3" type="button"
-                                    onclick="next('category-div', 'time-div')">Back</button>
-                                <button class="btn btn-outline-indigo mt-3" type="button"
-                                    onclick="next('time-div', 'product-div')">Next</button>
-                            </div>
-                        </div>
-                        <div id="product-div" class="d-none">
-                            <h2 class="p-5 text-center">Others</h2>
-                            <div class="form-group">
-                                <label for="products_description">Product Description</label>
-                                <textarea name="products_description" id="products_description" cols="30" rows="5"
-                                    class="form-control" required></textarea>
-                            </div>
-                            @foreach ($productTypes as $productType)
-                                <div class="form-group product-list">
-                                    <label for="{{ $productType->key }}">{{ $productType->value }}</label>
-                                    <input type="checkbox" name="product_types[{{ $productType->id }}]"
-                                        id="{{ $productType->key }}">
-                                </div>
-                            @endforeach
-                            <div class="form-group product-list">
-                                <label for="worker">Worker</label>
-                                <input type="checkbox" name="worker" id="worker">
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <button class="btn btn-outline-indigo mt-3" type="button"
-                                    onclick="next('product-div', 'time-div')">Back</button>
+                                    onclick="next('time-div', 'category-div')">Back</button>
                                 <button class="btn btn-success mt-3" type="submit">Make Trip</button>
                             </div>
                         </div>

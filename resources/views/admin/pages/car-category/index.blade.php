@@ -9,9 +9,6 @@
                         <th>#</th>
                         <th>Car</th>
                         <th>Model</th>
-                        <th>Size</th>
-                        <th>Weight</th>
-                        <th>Covered</th>
                         <th>Description</th>
                         <th width="1%">Action</th>
                     </tr>
@@ -26,9 +23,6 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $carCategory->carModelCategory->carBrandCategory->name }}
                                 {{ $carCategory->carModelCategory->model }}</td>
-                            <td>{{ $carCategory->carSizeCategory->size }}</td>
-                            <td> {{ $carCategory->carWeightCategory->weight }}</td>
-                            <td> {{ $carCategory->carCoveredCategory->name }}</td>
                             <td>{{ $carCategory->description }}</td>
                             <td class="with-btn" nowrap="">
                                 <a href="{{ route('admin.car-category.edit', $carCategory->id) }}"

@@ -131,11 +131,6 @@ class AuthController extends Controller
             return redirect()->intended(route("customer.dashboard"));
         }
 
-        if ($user->hasRole('company')) {
-            Toastr::success('Welcome To Dashboard', 'Welcome');
-            return redirect()->intended(route("company.dashboard"));
-        }
-
         if ($user->hasRole('driver')) {
             Toastr::success('Welcome To Dashboard', 'Welcome');
             return redirect()->intended(route("driver.dashboard"));
@@ -239,9 +234,6 @@ class AuthController extends Controller
             $user->assignRole('customer');
             $user->save();
         } else if ($request->usertype == 2) {
-            $user->assignRole('company');
-            $user->save();
-        } else if ($request->usertype == 3) {
             $user->assignRole('driver');
             $user->save();
         } else {

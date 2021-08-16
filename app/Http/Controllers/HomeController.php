@@ -41,7 +41,7 @@ class HomeController extends Controller
             });
         }
         return view('home', [
-            "carCategories" => CarCategory::with("carWeightCategory")->latest()->take(12)->get(),
+            "carCategories" => CarCategory::with("carModelCategory")->latest()->take(12)->get(),
             "sliders" => HeaderSlider::where("category", "home")->orderBy("position")->get(),
             "clients" => Client::latest()->take(12)->get(),
             "whyBlogs" => $whyBlogs,
