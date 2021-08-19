@@ -209,6 +209,7 @@ nav {
 @media all and (min-width: 992px) {
     .navbar .nav-item .dropdown-menu {
         display: none;
+        text-transform: uppercase;
     }
     .navbar .nav-item:hover .nav-link {
         color: #fff;

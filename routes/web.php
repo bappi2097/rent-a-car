@@ -77,40 +77,6 @@ Route::group(
             });
         });
 
-        Route::group(["as" => "company.", "prefix" => "company", "middleware" => ["auth", "role:company", 'prevent-back-history']], function () {
-            Route::get("dashboard", [\App\Http\Controllers\Frontend\Company\DashboardController::class, "index"])->name('dashboard');
-            Route::get("notification/{notification}", [\App\Http\Controllers\NotificationController::class, "notification"])->name("notification");
-            Route::group(['prefix' => 'my-profile', 'as' => 'my-profile.'], function () {
-                Route::get("/", [\App\Http\Controllers\Frontend\Company\ProfileController::class, "showProfile"])->name('show');
-                Route::post("/", [\App\Http\Controllers\Frontend\Company\ProfileController::class, "updateProfile"])->name('update');
-            });
-
-            Route::group(['prefix' => 'change-password', 'as' => 'change-password.'], function () {
-                Route::get("/", [\App\Http\Controllers\Frontend\Company\ChangePasswordController::class, "show"])->name('show');
-                Route::post("/", [\App\Http\Controllers\Frontend\Company\ChangePasswordController::class, "update"])->name('update');
-            });
-
-            Route::group(['prefix' => 'car', 'as' => 'car.'], function () {
-                Route::get('/', [\App\Http\Controllers\Frontend\Company\CarController::class, 'index'])->name('index');
-                Route::get('/create', [\App\Http\Controllers\Frontend\Company\CarController::class, 'create'])->name('create');
-                Route::post('/', [\App\Http\Controllers\Frontend\Company\CarController::class, 'store'])->name('store');
-                Route::get('/edit/{car}', [\App\Http\Controllers\Frontend\Company\CarController::class, 'edit'])->name('edit');
-                Route::put('/{car}', [\App\Http\Controllers\Frontend\Company\CarController::class, 'update'])->name('update');
-                Route::delete('/{car}', [\App\Http\Controllers\Frontend\Company\CarController::class, 'destroy'])->name('destroy');
-            });
-            Route::group(['prefix' => 'bid', 'as' => 'bid.'], function () {
-                Route::get('/', [\App\Http\Controllers\Frontend\Company\BidController::class, 'index'])->name('index');
-                Route::get('/{trip}', [\App\Http\Controllers\Frontend\Company\BidController::class, 'show'])->name('show');
-                Route::post('/create/{trip}', [\App\Http\Controllers\Frontend\Company\BidController::class, 'create'])->name('create');
-            });
-            Route::group(['prefix' => 'trip', 'as' => 'trip.'], function () {
-                Route::get("/current-trip", [\App\Http\Controllers\Frontend\Company\TripController::class, "indexCurrent"])->name('current-trip');
-                Route::get("/history-trip", [\App\Http\Controllers\Frontend\Company\TripController::class, "indexHistory"])->name('history-trip');
-                Route::get("/show-trip/{trip}", [\App\Http\Controllers\Frontend\Company\TripController::class, "showTrip"])->name('show-trip');
-                Route::post("/finish/{trip}", [\App\Http\Controllers\Frontend\Company\TripController::class, "finish"])->name('finish');
-            });
-        });
-
         Route::group(["as" => "driver.", "prefix" => "driver", "middleware" => ["auth", "role:driver", 'prevent-back-history']], function () {
             Route::get("dashboard", [\App\Http\Controllers\Frontend\Driver\DashboardController::class, "index"])->name('dashboard');
             Route::get("notification/{notification}", [\App\Http\Controllers\NotificationController::class, "notification"])->name("notification");
@@ -180,26 +146,6 @@ Route::group(
                     Route::delete('/{user}', [\App\Http\Controllers\backend\CustomerController::class, 'destroy'])->name('destroy');
                 });
 
-                Route::group(['prefix' => 'company', 'as' => 'company.'], function () {
-                    Route::get('/', [\App\Http\Controllers\backend\CompanyController::class, 'index'])->name('index');
-                    Route::get('/create', [\App\Http\Controllers\backend\CompanyController::class, 'create'])->name('create');
-                    Route::get('/{user}', [\App\Http\Controllers\backend\CompanyController::class, 'show'])->name('show');
-                    Route::post('/', [\App\Http\Controllers\backend\CompanyController::class, 'store'])->name('store');
-                    Route::get('/edit/{user}', [\App\Http\Controllers\backend\CompanyController::class, 'edit'])->name('edit');
-                    Route::put('/{user}', [\App\Http\Controllers\backend\CompanyController::class, 'update'])->name('update');
-                    Route::put('/change-password/{user}', [\App\Http\Controllers\backend\CompanyController::class, 'changePassword'])->name('change-password');
-                    Route::delete('/{user}', [\App\Http\Controllers\backend\CompanyController::class, 'destroy'])->name('destroy');
-
-                    Route::group(['prefix' => 'car', 'as' => 'car.'], function () {
-                        Route::get('/{company}', [\App\Http\Controllers\backend\CompanyCarController::class, 'index'])->name('index');
-                        Route::get('/create/{company}', [\App\Http\Controllers\backend\CompanyCarController::class, 'create'])->name('create');
-                        Route::post('/{company}', [\App\Http\Controllers\backend\CompanyCarController::class, 'store'])->name('store');
-                        Route::get('/edit/{company}/{car}', [\App\Http\Controllers\backend\CompanyCarController::class, 'edit'])->name('edit');
-                        Route::put('/{company}/{car}', [\App\Http\Controllers\backend\CompanyCarController::class, 'update'])->name('update');
-                        Route::delete('/{company}/{car}', [\App\Http\Controllers\backend\CompanyCarController::class, 'destroy'])->name('destroy');
-                    });
-                });
-
                 Route::group(['prefix' => 'driver', 'as' => 'driver.'], function () {
                     Route::get('/', [\App\Http\Controllers\backend\DriverController::class, 'index'])->name('index');
                     Route::get('/create', [\App\Http\Controllers\backend\DriverController::class, 'create'])->name('create');
@@ -215,15 +161,6 @@ Route::group(
                         Route::post('/{driver}', [\App\Http\Controllers\backend\DriverCarController::class, 'store'])->name('store');
                         Route::put('/{driver}/{car}', [\App\Http\Controllers\backend\DriverCarController::class, 'update'])->name('update');
                     });
-                });
-
-                Route::group(['prefix' => 'company-type', 'as' => 'company-type.'], function () {
-                    Route::get('/', [\App\Http\Controllers\backend\CompanyTypeController::class, 'index'])->name('index');
-                    Route::get('/create', [\App\Http\Controllers\backend\CompanyTypeController::class, 'create'])->name('create');
-                    Route::post('/', [\App\Http\Controllers\backend\CompanyTypeController::class, 'store'])->name('store');
-                    Route::get('/edit/{companyType}', [\App\Http\Controllers\backend\CompanyTypeController::class, 'edit'])->name('edit');
-                    Route::put('/{companyType}', [\App\Http\Controllers\backend\CompanyTypeController::class, 'update'])->name('update');
-                    Route::delete('/{companyType}', [\App\Http\Controllers\backend\CompanyTypeController::class, 'destroy'])->name('destroy');
                 });
             });
 
