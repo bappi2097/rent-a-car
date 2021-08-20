@@ -9,13 +9,13 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="p-3 py-4 m-2 bg-red-600 rounded shadow-lg cost-trip">
                                 <h3 class="text-light-900">Total Balance</h3>
-                                <h4 class="px-3 text-light-900">{{ !empty($balance) ? $balance->balance : 0 }}</h4>
+                                <h4 class="px-3 text-light-900">{{ !empty($balance) ? $balance->sum('balance') : 0 }}</h4>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <div class="p-3 py-4 m-2 bg-yellow-700 rounded shadow-lg number-trip">
                                 <h3 class="text-light-900">Total Trip</h3>
-                                <h4 class="px-3 text-light-900">{{ !empty($balance) ? $balance->trip_no : 0 }}</h4>
+                                <h4 class="px-3 text-light-900">{{ !empty($balance) ? $balance->count() : 0 }}</h4>
                             </div>
                         </div>
                     </div>

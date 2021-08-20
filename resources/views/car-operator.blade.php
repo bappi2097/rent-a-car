@@ -27,7 +27,7 @@
             </div>
         </div>
     </div>
-    <div id="category" class="py-5 my-5 bg-white">
+    {{-- <div id="category" class="py-5 my-5 bg-white">
         <div class="container text-center">
             <h3 class="testimonial-text">{{ __('frontend/car-operator.rent-a-car-operator') }}</h3>
             <div class="my-4 d-flex justify-content-center align-items-center">
@@ -55,7 +55,7 @@
                 </div>
             @endfor
         </div>
-    </div>
+    </div> --}}
     <div id="testimonial" class="py-5 my-5 bg-white">
         <div class="container text-center">
             <h3 class="testimonial-text">{{ __('frontend/car-operator.how-rent-a-car-works') }}</h3>

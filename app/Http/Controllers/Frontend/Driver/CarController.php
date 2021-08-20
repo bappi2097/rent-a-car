@@ -25,6 +25,7 @@ class CarController extends Controller
             return redirect()->route("driver.my-profile.show");
         }
         $car = auth()->user()->driver->car;
+        // dd(auth()->user()->driver->car);
         if (empty($car)) {
             return view("driver.pages.car.create", [
                 "carCategories" => CarCategory::with(["carModelCategory"])->get(),
@@ -57,7 +58,7 @@ class CarController extends Controller
             "car_no" => $request->car_no,
             "is_valid" => 0,
         ];
-        $driver = DriverDetail::find(auth()->user()->driver->id)->with("car")->first();
+        $driver = DriverDetail::where("id", auth()->user()->driver->id)->with("car")->first();
         $car = new Car($data);
         if ($car->save()) {
             $driver->update(["car_id" => $car->id]);

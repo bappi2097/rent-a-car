@@ -33,7 +33,7 @@
                         <label for="user-type">{{ __('utility.user-type') }}</label>
                         <select name="usertype" id="user-type" class="form-control" required>
                             <option value="1">Customer</option>
-                            <option value="2">Driver</option>
+                            <option value="2">Car Owner</option>
                         </select>
                         @error('usertype')
                             <span class="invalid-feedback" role="alert">

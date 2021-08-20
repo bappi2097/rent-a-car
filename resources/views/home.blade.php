@@ -5,7 +5,7 @@
     @include('layouts.partials.blog-list')
     {{-- @include('layouts.partials.testimonial-slider', ["title" => "frontend/home.testimonials"]) --}}
     {{-- @include('layouts.partials.image-slider') --}}
-    <div id="client" class="py-5 my-5">
+    {{-- <div id="client" class="py-5 my-5">
         <div class="container text-center">
             <h3 class="testimonial-text">{{ __('frontend/home.our-clients') }}</h3>
             <div class="my-4 d-flex justify-content-center align-items-center">
@@ -21,10 +21,10 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </div> --}}
     @include('layouts.partials.category-slider', ["carCategories" => $carCategories])
 
-    <div id="latest-blogs-div" class="container py-5 my-5 text-center">
+    {{-- <div id="latest-blogs-div" class="container py-5 my-5 text-center">
         <h3>{{ __('frontend/home.latest-news') }}</h3>
         <p class="custom-index-blog-p">{{ __('frontend/home.read-our-blog') }}</p>
         <div class="mt-4 d-flex justify-content-center align-items-center">
@@ -71,7 +71,7 @@
             @endif
         </div>
         <a href="{{ route('blog') }}" class="mt-5 btn btn-outline-indigo">{{ __('utility.more') }}</a>
-    </div>
+    </div> --}}
     @include('layouts.partials.footer-hero')
 @endsection
 @push('script')

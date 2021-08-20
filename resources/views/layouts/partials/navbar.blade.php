@@ -17,11 +17,11 @@
                     {{ __('frontend/navbar.car-operator') }}
                 </a>
             </li>
-            <li class="nav-item {{ active('blog') }}">
+            {{-- <li class="nav-item {{ active('blog') }}">
                 <a class="text-white nav-link" href="{{ route('blog') }}">
                     {{ __('frontend/navbar.blog') }}
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="text-white nav-link {{ active('contact-us') }}" href="{{ route('contact-us') }}">
                     {{ __('frontend/navbar.contact-us') }}
@@ -80,7 +80,7 @@
                     @endif
                 </li>
             @endauth
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <a class="text-white nav-link dropdown-toggle d-flex align-items-center" href="javascript:void(0)"
                     data-toggle="dropdown">
                     @foreach (\App\Models\Language::all() as $item)
@@ -103,7 +103,7 @@
                         </li>
                     @endforeach
                 </ul>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </nav>
