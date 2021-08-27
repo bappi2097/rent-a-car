@@ -18,7 +18,7 @@
 <body class="bg-light-900">
     @include('layouts.partials.navbar')
     @yield('content')
-    @include('layouts.partials.footer')
+    {{-- @include('layouts.partials.footer') --}}
     <script src="{{ asset('js/frontend.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>

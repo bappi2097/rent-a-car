@@ -2,7 +2,10 @@
 
 @section('content')
     @include('layouts.partials.header-slider', ["items" => $sliders])
-    @include('layouts.partials.blog-list')
+    <div style="height: 80vh; width: 100%; display: flex; justify-content: center; align-items: center;">
+        <h1>Welcome to Rent A Car</h1>
+    </div>
+    {{-- @include('layouts.partials.blog-list') --}}
     {{-- @include('layouts.partials.testimonial-slider', ["title" => "frontend/home.testimonials"]) --}}
     {{-- @include('layouts.partials.image-slider') --}}
     {{-- <div id="client" class="py-5 my-5">
@@ -22,7 +25,7 @@
             @endforeach
         </div>
     </div> --}}
-    @include('layouts.partials.category-slider', ["carCategories" => $carCategories])
+    {{-- @include('layouts.partials.category-slider', ["carCategories" => $carCategories]) --}}
 
     {{-- <div id="latest-blogs-div" class="container py-5 my-5 text-center">
         <h3>{{ __('frontend/home.latest-news') }}</h3>
@@ -72,7 +75,7 @@
         </div>
         <a href="{{ route('blog') }}" class="mt-5 btn btn-outline-indigo">{{ __('utility.more') }}</a>
     </div> --}}
-    @include('layouts.partials.footer-hero')
+    {{-- @include('layouts.partials.footer-hero') --}}
 @endsection
 @push('script')
     <script>

@@ -88,14 +88,14 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-header">Language</li>
+            {{-- <li class="nav-header">Language</li>
             <li class="{{ active('admin.language.index') }}">
                 <a href="{{ route('admin.language.index') }}">
                     <i class="fas fa-lg fa-fw m-r-10 fa-american-sign-language-interpreting"></i>
                     <span>Languages</span>
                 </a>
-            </li>
-            <li class="nav-header">Blog</li>
+            </li> --}}
+            {{-- <li class="nav-header">Blog</li>
             <li class="has-sub {{ set_active('admin/blog*') }}">
                 <a href="javascript:;">
                     <b class="caret"></b>
@@ -110,7 +110,7 @@
                         <a href="{{ route('admin.blog.index') }}">Blog</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
             <li class="has-sub {{ set_active('admin/setting*') }}">
                 <a href="javascript:;">
                     <b class="caret"></b>
@@ -121,20 +121,21 @@
                     <li class="{{ active('admin.setting.slider.index') }}">
                         <a href="{{ route('admin.setting.slider.index') }}">Header Slider</a>
                     </li>
-                    <li class="{{ active('admin.setting.client.index') }}">
+                    {{-- <li class="{{ active('admin.setting.client.index') }}">
                         <a href="{{ route('admin.setting.client.index') }}">Client</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
-            <li class="has-sub {{ active('admin.contact.index') }}">
+            {{-- <li class="has-sub {{ active('admin.contact.index') }}">
                 <a href="{{ route('admin.contact.index') }}">
                     <i class="fa fa-th-large"></i>
                     <span>Mail</span>
                 </a>
-            </li>
+            </li> --}}
             <li>
-                <a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i
-                        class="fa fa-angle-double-left"></i></a>
+                <a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify">
+                    <i class="fa fa-angle-double-left"></i>
+                </a>
             </li>
         </ul>
     </div>

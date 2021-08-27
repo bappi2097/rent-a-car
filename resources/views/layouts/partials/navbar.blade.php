@@ -12,21 +12,21 @@
             <li class="nav-item {{ active('home') }}">
                 <a class="text-white nav-link" href="{{ route('home') }}">{{ __('frontend/navbar.home') }}</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="text-white nav-link {{ active('car-operator') }}" href="{{ route('car-operator') }}">
                     {{ __('frontend/navbar.car-operator') }}
                 </a>
-            </li>
+            </li> --}}
             {{-- <li class="nav-item {{ active('blog') }}">
                 <a class="text-white nav-link" href="{{ route('blog') }}">
                     {{ __('frontend/navbar.blog') }}
                 </a>
             </li> --}}
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="text-white nav-link {{ active('contact-us') }}" href="{{ route('contact-us') }}">
                     {{ __('frontend/navbar.contact-us') }}
                 </a>
-            </li>
+            </li> --}}
             @auth
                 <li class="nav-item">
                     <a class="text-white nav-link {{ active('customer.dashboard') }}"

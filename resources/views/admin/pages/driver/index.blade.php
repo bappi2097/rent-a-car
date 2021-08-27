@@ -19,12 +19,13 @@
                     @foreach ($drivers as $index => $driver)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>{{ $driver->driver->uuid }}</td>
+                            <td>{{ $driver->driver ? $driver->driver->uuid : '' }}</td>
                             <td>{{ $driver->name }}</td>
                             <td>{{ $driver->email }}</td>
                             <td>{{ $driver->mobile_no }}</td>
                             <td class="with-img">
-                                <img src="{{ asset($driver->driver->image) }}" class="img-rounded height-30">
+                                <img src="{{ asset($driver->driver ? $driver->driver->image : '') }}"
+                                    class="img-rounded height-30">
                             </td>
                             <td class="with-btn" nowrap="">
                                 <a href="{{ route('admin.user.driver.car.create', $driver->driver->id) }}"
